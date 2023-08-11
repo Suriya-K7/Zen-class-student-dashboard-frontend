@@ -1,0 +1,23 @@
+.task__url {
+  text-decoration: none;
+  color: black;
+  transition: 0.3s;
+}
+.task__url:hover {
+  color: var(--theme);
+  letter-spacing: 1px;
+}
+.task__score {
+  margin-top: 15px;
+  border: 1px solid var(--secondary);
+  padding: 5px;
+  text-align: center;
+  border-radius: 5px;
+  background-color: var(--theme);
+  transition: 0.3s;
+  color: white;
+  font-size: 700;
+}
+.task__score:hover {
+  letter-spacing: 1px;
+}

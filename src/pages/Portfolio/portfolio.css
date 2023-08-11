@@ -1,0 +1,33 @@
+.portfolio {
+  padding-top: 15px;
+}
+.portfolio .label__style {
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--secondary);
+}
+.portfolio__area {
+  border-right: 1px solid rgba(128, 128, 128, 0.31);
+}
+.portfolio .button {
+  height: 48px;
+  border: 1px solid var(--theme);
+  border-radius: 8px;
+  margin-bottom: 18px;
+  transition: 0.3s;
+}
+.portfolio .button:hover {
+  background-color: var(--theme);
+  color: #fff;
+  letter-spacing: 2px;
+}
+.portfolio .note {
+  padding: 5px 25px;
+  color: var(--secondary);
+  opacity: 0.8;
+}
+.portfolio .review__header {
+  color: var(--theme);
+  font-size: 24px;
+  font-weight: 400;
+}

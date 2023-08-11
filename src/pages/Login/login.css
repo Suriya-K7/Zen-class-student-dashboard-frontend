@@ -1,0 +1,38 @@
+.loginPage {
+}
+.loginPage .logo {
+  width: 120px;
+  padding: 0;
+  margin: 20px;
+  transition: 0.3s;
+}
+.loginPage .banner {
+  width: 100%;
+  height: 100vh;
+}
+.loginPage label {
+  color: var(--secondary);
+}
+.loginPage .login__btn {
+  background-color: var(--theme);
+  color: #fff;
+  transition: 0.3s;
+}
+.loginPage .login__btn:hover {
+  background-color: var(--theme);
+  color: #fff;
+  letter-spacing: 2px;
+}
+@media (max-width: 768px) {
+  .banner__right {
+    display: none;
+  }
+  .loginPage .img__container {
+    display: grid;
+    place-items: center;
+    margin-bottom: 25px;
+  }
+  .loginPage .logo {
+    width: 100px;
+  }
+}

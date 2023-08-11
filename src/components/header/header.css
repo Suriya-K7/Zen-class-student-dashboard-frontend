@@ -1,0 +1,32 @@
+.top__header {
+  height: 96px;
+  position: sticky;
+  width: 100%;
+  top: 0;
+  z-index: 10;
+  padding: 0 24px;
+  border-bottom: 1.5px solid #dedede;
+  user-select: none;
+  background-color: #fff;
+  /* z-index: 50; */
+}
+.top__header .heading {
+  font-style: normal;
+  font-weight: 500;
+  color: #000;
+  margin-left: 70px;
+  font-size: 40px;
+}
+.user__profile {
+  align-items: start;
+  padding-bottom: 10px;
+}
+.user__name {
+  color: var(--secondary);
+}
+.dropdown-menu {
+  padding: 0 !important;
+}
+.dropdown-item:hover {
+  background-color: #e9ecef !important;
+}

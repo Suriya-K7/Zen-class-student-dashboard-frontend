@@ -1,0 +1,8 @@
+.mock__Data {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.mock__title {
+  width: 200px;
+}

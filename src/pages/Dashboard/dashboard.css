@@ -1,0 +1,50 @@
+.activities__box {
+  border: 1px solid #dedede;
+  border-radius: 10px;
+  padding: 10px;
+  color: var(--theme);
+}
+.problem__solved {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.codekata,
+.webkata {
+  min-width: 500px;
+  border-radius: 5px;
+  /* height: 100px; */
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgba(128, 128, 128, 0.078);
+  color: var(--theme);
+  transition: 0.3s;
+}
+.codekata:hover,
+.webkata:hover {
+  box-shadow: 0 0 5px #000;
+}
+.codekata .head,
+.webkata .head {
+  text-align: center;
+  color: var(--secondary);
+}
+.codekata .score,
+.webkata .score {
+  font-size: 48px;
+  font-weight: 500;
+  color: var(--green);
+}
+.view__btn {
+  border: 1px solid var(--theme);
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: var(--theme);
+  transition: 0.3s;
+}
+.view__btn:hover {
+  background-color: var(--theme);
+  color: #fff;
+}

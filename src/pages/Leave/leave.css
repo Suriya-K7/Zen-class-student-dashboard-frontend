@@ -1,0 +1,39 @@
+.leave {
+  padding: 15px 15px 15px 90px;
+}
+.leave .btn__container {
+  display: flex;
+  align-items: center;
+  background-color: #f0efff;
+  height: 64px;
+  padding-left: 16px;
+  border-radius: 5px;
+}
+.leave .addBtn {
+  border: 1px solid var(--theme);
+  transition: 0.3s;
+}
+.leave .addBtn:hover {
+  background-color: var(--theme);
+  color: #fff;
+  letter-spacing: 2px;
+}
+.leave .submit__btn {
+  background-color: var(--theme);
+  color: #fff;
+}
+.leave .submit__btn:hover {
+  opacity: 0.9;
+  color: #fff;
+  background-color: var(--theme);
+}
+.leave .modal-body {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+.leave .marktag {
+  width: auto;
+}

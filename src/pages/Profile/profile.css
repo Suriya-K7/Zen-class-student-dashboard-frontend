@@ -1,0 +1,16 @@
+.detailCards {
+  border: 2px solid hsl(0, 0%, 94%);
+  border-radius: 16px;
+  padding: 20px;
+}
+.personalDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.profile input::placeholder {
+  color: var(--gray);
+}
+.profile input:disabled {
+  opacity: 0.5;
+}
