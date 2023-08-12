@@ -2,16 +2,44 @@ import React, { useEffect, useState } from 'react';
 import "./tasks.css";
 import { userDetails, roadMapData, taskData } from '../../data';
 import TaskUrl from '../../components/taskUrl/TaskUrl';
+import { useContext } from 'react';
+import DataContext from '../../context/DataContext';
+import api from '../../api/api';
 
 const Tasks = () => {
     const [no, setNo] = useState(1);
     const [task, setTask] = useState([]);
     const [data, setData] = useState(roadMapData[1]);
+
+    //
+
+    const [DBTask, setDBTask] = useState();
+    const { token } = useContext(DataContext);
+    const config = {
+        headers: { authorization: `bearer ${token}` },
+    }
+
+    const fetchTask = async () => {
+        try {
+            const fetchedTask = await api.get("student/task", config);
+            if (fetchedTask) {
+                setDBTask(fetchedTask.data);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    useEffect(() => {
+        fetchTask();
+    }, []);
+
+
     useEffect(() => {
         const temp = taskData.find((item) => item.day === roadMapData[no].day)
         setTask(temp);
         setData(roadMapData[no]);
     }, [no]);
+
     return (
         <section className='task__submission'>
             {

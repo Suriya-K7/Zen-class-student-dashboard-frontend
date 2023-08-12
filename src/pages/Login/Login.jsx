@@ -7,7 +7,7 @@ import { ToastContainer, Zoom } from "react-toastify";
 import DataContext from '../../context/DataContext';
 
 const Login = () => {
-    const { email, setEmail, password, setPassword, handleSignIn } = useContext(DataContext);
+    const { email, setEmail, password, setPassword, handleSignIn, isLoading } = useContext(DataContext);
     return (
         <div className="loginPage">
             <div className="row m-0">
@@ -46,7 +46,11 @@ const Login = () => {
                                             />
                                         </div>
                                     </div>
-                                    <button type="submit" className="col-12 btn btn-lg btn-block login__btn mt-4 mb-4">Login</button>
+                                    <button type="submit" className="col-12 btn btn-lg btn-block login__btn mt-4 mb-4 d-flex justify-content-center">
+                                        {
+                                            isLoading ? (<span className="spinner-border text-warning"></span>) : "Login"
+                                        }
+                                    </button>
                                 </form>
                             </div>
                             <Link to="/forgot" className="btn forgot btn-outline-danger mb-2">Forgot Password?</Link>

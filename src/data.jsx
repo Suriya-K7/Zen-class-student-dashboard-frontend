@@ -640,7 +640,7 @@ export const roadMapData = [
         preread: "No preread available",
         activity: "https://docs.google.com/document/d/1QznT1zM4mI6dG0TODx5Xjs1GquMoSHO3xZ1USDnVM-w/preview",
         tags: ["javascript", "browser", "DOM"],
-        task: "fe",
+        task: "fs",
         link: "https://us06web.zoom.us/rec/share/2vNyyp8BVk14kn6GDIZZGMBdqWiPoVqOT3_KPEIQW9Q_XULC5hnRU9tG3gUAjRe4.nQk9SId7Y0q0mTwn"
     },
     {
@@ -651,7 +651,7 @@ export const roadMapData = [
         preread: "No preread available",
         activity: "https://docs.google.com/document/d/1lkzy8u0rkW5v2jGvbJcJrmVVLjMqN_TmmsHkL41AoIc/preview",
         tags: ["HTTP methods"]
-        , task: "fe", link: "https://us06web.zoom.us/rec/share/HPsS7OZAzpuGWIXAUa_lAh5bIVcua9AdcV00yYJMS9ZUT7--cd2ovTIqbk6GOV2n.6TpX3-Xis2StJPwr"
+        , task: "fs", link: "https://us06web.zoom.us/rec/share/HPsS7OZAzpuGWIXAUa_lAh5bIVcua9AdcV00yYJMS9ZUT7--cd2ovTIqbk6GOV2n.6TpX3-Xis2StJPwr"
     },
     {
         day: 3,
@@ -661,7 +661,7 @@ export const roadMapData = [
         preread: "No preread available",
         activity: "https://docs.google.com/document/d/1cNDeT0CKJwqXYDeSIlmJVhx_t4AFvR_0Ypa1cp2rhJk/edit?usp=sharing",
         tags: ["array", "JSON", "objects"]
-        , task: "fe", link: "https://us06web.zoom.us/rec/share/u4ydtsiyBxeNOG4S_mbN7qlyD7RsWZastMB6JcV_CKKkFpBi38T4rtZ0_rntkV1r.e07Ni8C8cU-8P8MH"
+        , task: "fs", link: "https://us06web.zoom.us/rec/share/u4ydtsiyBxeNOG4S_mbN7qlyD7RsWZastMB6JcV_CKKkFpBi38T4rtZ0_rntkV1r.e07Ni8C8cU-8P8MH"
     },
     {
         day: 4,
@@ -671,7 +671,7 @@ export const roadMapData = [
         preread: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
         activity: "https://docs.google.com/document/d/1TPk3wqxDFi64WV-6hJOkYEzBaAYxNvZ4T9hRJGgvFjw/edit",
         tags: ["hoisting", "scope-block", "functions"]
-        , task: "fe", link: "https://us06web.zoom.us/rec/share/kH7b7K_phKYKrJ0DuGs-vAl32diMN6lrZdPO0SPF98nFIQkm3Njb3DLSZ-mpNems.phAXyk_TQC54Wvr2"
+        , task: "fs", link: "https://us06web.zoom.us/rec/share/kH7b7K_phKYKrJ0DuGs-vAl32diMN6lrZdPO0SPF98nFIQkm3Njb3DLSZ-mpNems.phAXyk_TQC54Wvr2"
     },
     {
         day: 5,
@@ -681,7 +681,7 @@ export const roadMapData = [
         preread: "https://aravishack.medium.com/es6-features-a-walk-through-1ffd8eb82f6",
         activity: "https://docs.google.com/document/d/1EIpyPItk5xMOQluX5m_cPD4KTI9AnkyqDlO26pbG4a8/edit",
         tags: ["es5", "es6", "arrow functions", "array destructure"]
-        , task: "fe", link: "https://us06web.zoom.us/rec/share/AeHhDK7V1nSZnpCQXp8BDtRelD0oNG9HE4F3Zv7xlC4JrJJop1EH9_w9QuInLIsj.sxWScuqywtyLDQET"
+        , task: "fs", link: "https://us06web.zoom.us/rec/share/AeHhDK7V1nSZnpCQXp8BDtRelD0oNG9HE4F3Zv7xlC4JrJJop1EH9_w9QuInLIsj.sxWScuqywtyLDQET"
     },
     {
         day: 6,
@@ -691,7 +691,7 @@ export const roadMapData = [
         preread: "No preread available",
         activity: "https://docs.google.com/document/d/1ILi6J1s3tSv8xnXImIuWr5jD652BXNHNLNa0ErmRsRk/edit?usp=sharing",
         tags: ["this keyword", "OOPS"]
-        , task: "fe", link: "https://us06web.zoom.us/rec/share/39r-g1-FHY_FonKcLnD2MR5uTyH1poWVRi6i_MpkYt5kU4JIG0arnscJw0ldOEQL.NKl9vHKIrHAW1K7x"
+        , task: "fs", link: "https://us06web.zoom.us/rec/share/39r-g1-FHY_FonKcLnD2MR5uTyH1poWVRi6i_MpkYt5kU4JIG0arnscJw0ldOEQL.NKl9vHKIrHAW1K7x"
     },
     {
         day: 7,
@@ -701,7 +701,7 @@ export const roadMapData = [
         preread: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
         activity: "https://docs.google.com/document/d/12wAX28odaaCy4IWdlX3QQ3LOrBB3UXLsMD99X1Ve1Uc/edit?usp=sharing",
         tags: ["arrow functions", "array methods"]
-        , task: "fe", link: "https://us06web.zoom.us/rec/share/JpN9M6ioxWm70Eo5g88uTCwm1Fa4dipCx0VdEnTFAhAt5Ta69Nap3nRMnbaroykR.-ruxkHwRgpf0ojnr"
+        , task: "fs", link: "https://us06web.zoom.us/rec/share/JpN9M6ioxWm70Eo5g88uTCwm1Fa4dipCx0VdEnTFAhAt5Ta69Nap3nRMnbaroykR.-ruxkHwRgpf0ojnr"
     },
     {
         day: 8,
@@ -962,7 +962,7 @@ export const roadMapData = [
         content: "Introduction to database, what is MySQL?, intro to MySQL engines, basic queries - create db, table, insert, update, alter, select - where clause, distinct, group by, order by, offset, limit",
         preread: "https://dev.mysql.com/doc/",
         activity: "IMDB Design a DB for IMDB 1. Movie should have multiple media(Video or Image) 2. Movie can belongs to multiple Genre 3. Movie can have multiple reviews and Review can belongs to a user 4. Artist can have multiple skills 5. Artist can perform multiple role in a single film"
-        , tags: ["MySQL", "database"], task: "be", link: "https://us06web.zoom.us/rec/share/2exw6KAmBr9Fbmwrf_ptvrxjfmo-EzS0W0S5gBJqYtoLNBpxCl88x1-AovV_C8A9.1fRBo7RnAroILNha"
+        , tags: ["MySQL", "database"], task: "bs", link: "https://us06web.zoom.us/rec/share/2exw6KAmBr9Fbmwrf_ptvrxjfmo-EzS0W0S5gBJqYtoLNBpxCl88x1-AovV_C8A9.1fRBo7RnAroILNha"
     },
     {
         day: 36,
@@ -971,7 +971,7 @@ export const roadMapData = [
         content: "normalization, select queries, joins, DB model design, Intro to Mongodb & installation of mongodb",
         preread: "https://dev.mysql.com/doc/",
         activity: "Complete SQL Bolt, And submit the screenshots"
-        , tags: ["MySQL", "database"], task: "be", link: "https://us06web.zoom.us/rec/share/velHsribAeCFS-lK9Ff7oYvlR-53-IItJUNyxnnX2MoLvYvhQwVQeyznZDZk2Z0S.Zz_V84mWe7X8lr4V"
+        , tags: ["MySQL", "database"], task: "bs", link: "https://us06web.zoom.us/rec/share/velHsribAeCFS-lK9Ff7oYvlR-53-IItJUNyxnnX2MoLvYvhQwVQeyznZDZk2Z0S.Zz_V84mWe7X8lr4V"
     },
     {
         day: 37,
@@ -980,7 +980,7 @@ export const roadMapData = [
         content: "intro to mongodb, why mongodb?, what is document?, what is collection?, Mongodb vs MySQL, installation of mongodb, creation of database, collections, documents, find - query & projection",
         preread: "https://docs.mongodb.com/manual/",
         activity: "https://github.com/rvsp/database/tree/master/mongodb"
-        , tags: ["mongodb", "database"], task: "be", link: "https://us06web.zoom.us/rec/share/hFwZa_mz7dKd5PfuIiagDMhArg-wtndZ7ep4gGug4mf46OVq68gC8zxypwMhi3jx.rNnOUxC66aJqeG2K"
+        , tags: ["mongodb", "database"], task: "bs", link: "https://us06web.zoom.us/rec/share/hFwZa_mz7dKd5PfuIiagDMhArg-wtndZ7ep4gGug4mf46OVq68gC8zxypwMhi3jx.rNnOUxC66aJqeG2K"
     },
     {
         day: 38,
@@ -989,7 +989,7 @@ export const roadMapData = [
         content: "use of operators in find(), basic cursor methods - map, toArray, pretty, forEach, limit, count, sort, Aggregation",
         preread: "https://docs.mongodb.com/manual/",
         activity: "https://github.com/rvsp/database/blob/master/mongodb/day-2/database-design-zen-class.txt"
-        , tags: ["mongodb", "database"], task: "be", link: "https://us06web.zoom.us/rec/share/zsN2fyL75bfKVthh3tavEMQdmb7-xV2DpvbkVsjLkQlaG1ogDLTGDc-yjHwjHc9O.SHyKTNoGM0c4DoF7"
+        , tags: ["mongodb", "database"], task: "bs", link: "https://us06web.zoom.us/rec/share/zsN2fyL75bfKVthh3tavEMQdmb7-xV2DpvbkVsjLkQlaG1ogDLTGDc-yjHwjHc9O.SHyKTNoGM0c4DoF7"
     }, {
         day: 39,
         title: "Nodejs- Day -1 : Nodejs",
@@ -997,7 +997,7 @@ export const roadMapData = [
         content: "What is nodejs?, Npm packages, - In build, - Third party, - Custom",
         preread: "https://nodejs.org/",
         activity: "Nodejs file system Task https://docs.google.com/document/d/1c_u6azHv7AQHse45GGcrCRe78liwv90S5aHwBR7tBP0/edit"
-        , tags: ["nodejs", "backend"], task: "be", link: "https://us06web.zoom.us/rec/share/aQbue2ZqGYDXtUBAnYsKkmsqmSVUs6yUPCAeMgXE9UBnmWsGqXEp3VFZzERfXLzd._1HQhJgxOxVrlllM"
+        , tags: ["nodejs", "backend"], task: "bs", link: "https://us06web.zoom.us/rec/share/aQbue2ZqGYDXtUBAnYsKkmsqmSVUs6yUPCAeMgXE9UBnmWsGqXEp3VFZzERfXLzd._1HQhJgxOxVrlllM"
     },
     {
         day: 40,

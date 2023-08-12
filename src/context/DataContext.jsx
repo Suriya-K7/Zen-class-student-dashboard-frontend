@@ -22,6 +22,7 @@ export const DataProvider = ({ children }) => {
     const [contactNo, setContactNo] = useState("");
     const [qualification, setQualification] = useState("");
     const [experience, setExperience] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
 
@@ -38,6 +39,7 @@ export const DataProvider = ({ children }) => {
 
     const handleSignIn = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
         const userData = {
             email: email,
             password: password,
@@ -49,6 +51,7 @@ export const DataProvider = ({ children }) => {
             setToken(response.data.token);
             setPassword("");
             setEmail("");
+            setIsLoading(false);
             navigate("/class");
         } catch (error) {
             // toast.error(error.response.data.message);
@@ -207,7 +210,9 @@ export const DataProvider = ({ children }) => {
                 handleProfileUpdate,
                 handleConfirm,
                 handleForgot,
-                handleReset
+                handleReset,
+                isLoading,
+                setIsLoading
             }}
         >
             {children}
