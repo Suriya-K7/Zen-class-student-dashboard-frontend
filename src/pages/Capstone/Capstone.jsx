@@ -81,7 +81,8 @@ const Capstone = () => {
                         </div>
                         <div className="row d-flex align-items-center justify-content-evenly secondaryGreyTextColor">
                             <div className="mx-1">
-                                {loggedUser.batch ? loggedUser.batch : loggedUser.student.batch} - Zen Class Student Dashboard
+                                {loggedUser.batch ? loggedUser.batch : loggedUser.student.batch}
+                                - Zen Class Student Dashboard
                             </div>
                         </div>
                     </div>
@@ -115,7 +116,9 @@ const Capstone = () => {
                                     {loggedUser.name ? loggedUser.name : loggedUser.student.name}
                                     {loggedUser.lName ? loggedUser.lName : loggedUser.student.lName}
                                 </div>
-                                <div className="secondaryGreyTextColor">({loggedUser.batch ? loggedUser.batch : loggedUser.student.batch} - First Capstone)</div>
+                                <div className="secondaryGreyTextColor">
+                                    ({loggedUser.batch ? loggedUser.batch : loggedUser.student.batch} - First Capstone)
+                                </div>
                                 <div className="secondaryGreyTextColor">Task Title:- Zen Class Student Dashboard</div>
                                 <div className="d-flex align-items-center justify-content-between">
                                     <div className="marktag  rounded">
@@ -139,7 +142,8 @@ const Capstone = () => {
                                         </strong>
                                     </div>
                                     <div className="mx-2 py-1 px-2 ">
-                                        <p>To identify and implement the Capstone project as the title given below by meeting all the necessary requirements.</p>
+                                        <p>To identify and implement the Capstone project
+                                            as the title given below by meeting all the necessary requirements.</p>
                                         <p><strong>Any specifications on the design?</strong></p>
                                         <ul>
                                             <li>Front-end: Reactjs</li>
@@ -155,11 +159,13 @@ const Capstone = () => {
                                         </ul>
                                         <p><strong>How do I submit my work?</strong></p>
                                         <ul>
-                                            <li>Push all your work files to GitHub in two different repositories as given below</li>
+                                            <li>Push all your work files to GitHub in two different repositories
+                                                as given below</li>
                                             <li>Front-end repo name project-name-frontend.</li>
                                             <li>Back-end repo name project-name-backend.</li>
                                             <li>
-                                                Deploy your front-end application on Netlify(https://www.netlify.com) and back-end application on Render(https://render.com/).
+                                                Deploy your front-end application on Netlify(https://www.netlify.com)
+                                                and back-end application on Render(https://render.com/).
                                             </li>
 
                                         </ul>
@@ -175,13 +181,23 @@ const Capstone = () => {
                                         <p><strong>Terms and Conditions?</strong></p>
                                         <ul>
                                             <ul>
-                                                <li>You agree to not share this confidential document with anyone.&nbsp;</li>
-                                                <li>You agree to open-source your code (it may even look good on your profile!). Do not mention our company’s name anywhere in the code.</li>
-                                                <li>We will never use your source code under any circumstances for any commercial purposes; this is just a basic assessment task.</li>
-                                                <li>For capstone, the use case has to be identified by the developer.</li>
+                                                <li>You agree to not share this confidential document with
+                                                    anyone.&nbsp;
+                                                </li>
+                                                <li>You agree to open-source your code (it may even look good on
+                                                    your profile!). Do not mention our company’s name anywhere
+                                                    in the code.
+                                                </li>
+                                                <li>We will never use your source code under any circumstances for
+                                                    any commercial purposes; this is just a basic assessment task.
+                                                </li>
+                                                <li>
+                                                    For capstone, the use case has to be identified by the developer.
+                                                </li>
                                             </ul>
                                         </ul>
-                                        <p>NOTE: Any violation of Terms and conditions is strictly prohibited. You are bound to adhere to it.</p>
+                                        <p>NOTE: Any violation of Terms and conditions is strictly prohibited.
+                                            You are bound to adhere to it.</p>
                                     </div>
                                 </div>
                             </div>
@@ -294,7 +310,8 @@ const Capstone = () => {
                                         <button className="submit__capstone" type="submit">
                                             {
                                                 isLoading ?
-                                                    (<span className="spinner-border spinner-border-sm text-warning"></span>)
+                                                    (<span className="spinner-border spinner-border-sm text-warning">
+                                                    </span>)
                                                     : "Submit"
                                             }
                                         </button>
@@ -310,7 +327,10 @@ const Capstone = () => {
                                                 `${capStone.comment}` : "Not submitted"
                                             }
                                         </div>
-                                        <div className="mx-2 mt-3 text-warning"><strong>Warning</strong> :- mark may be deducted automatically from your total score if your submission is beyond the deadline</div>
+                                        <div className="mx-2 mt-3 text-warning">
+                                            <strong>Warning</strong>
+                                            :- mark may be deducted automatically from your total score
+                                            if your submission is beyond the deadline</div>
                                     </div>
                                 </div>
                                 <hr className="containerDivider mx-1" />

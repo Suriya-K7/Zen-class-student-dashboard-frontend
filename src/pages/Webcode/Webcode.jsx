@@ -119,7 +119,8 @@ const Webcode = () => {
                                     {loggedUser.lName ? loggedUser.lName : loggedUser.student.lName}
                                 </div>
                                 <div className="secondaryGreyTextColor">
-                                    ({loggedUser.batch ? loggedUser.batch : loggedUser.student.batch} - First Webcode)
+                                    ({loggedUser.batch ? loggedUser.batch : loggedUser.student.batch}
+                                    - First Webcode)
                                 </div>
                                 <div className="secondaryGreyTextColor">
                                     Title:- Make Up API
