@@ -24,7 +24,7 @@ import Login from './pages/Login/Login';
 import DataContext from './context/DataContext';
 import LoggedOut from './pages/LoggedOut/LoggedOut';
 import Signup from './pages/Signup/Signup';
-import Forgot from './pages/forgot/Forgot';
+import Forgot from './pages/Forgot/Forgot';
 import Reset from './pages/Reset/Reset';
 import ConfirmUser from './pages/confirmUser/ConfirmUser';
 
