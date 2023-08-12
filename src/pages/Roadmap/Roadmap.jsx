@@ -70,7 +70,6 @@ const Roadmap = () => {
             }
             setIsLoading(false);
         }
-        console.log(newTask);
     }
 
 

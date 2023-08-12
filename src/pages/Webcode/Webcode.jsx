@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import "./webcode.css";
-import { userDetails } from '../../data';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import DataContext from '../../context/DataContext';
 import api from '../../api/api';
@@ -246,7 +245,7 @@ const Webcode = () => {
                                             <tr>
                                                 <td>
                                                     <input
-                                                        type="text"
+                                                        type="url"
                                                         className="code__submission"
                                                         placeholder='Enter Front-end Deployed URL'
                                                         required
@@ -259,7 +258,11 @@ const Webcode = () => {
                                     </table>
                                     <div className="text-center">
                                         <button className="submit__capstone" type="submit">
-                                            Submit
+                                            {
+                                                isLoading ?
+                                                    (<span className="spinner-border spinner-border-sm text-warning"></span>)
+                                                    : "Submit"
+                                            }
                                         </button>
                                     </div>
                                 </form>

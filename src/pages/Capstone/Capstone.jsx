@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import "./capstone.css";
-import { userDetails } from '../../data';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import { useContext } from 'react';
 import DataContext from '../../context/DataContext';
@@ -28,8 +27,7 @@ const Capstone = () => {
         try {
             const fetcheCapStone = await api.get("student/capstone", config);
             if (fetcheCapStone) {
-                // setCapStone(fetcheCapStone.data[0]);
-                console.log(fetcheCapStone.data[0]);
+                setCapStone(fetcheCapStone.data[0]);
             }
         } catch (error) {
             console.log(error);
@@ -38,7 +36,7 @@ const Capstone = () => {
 
     useEffect(() => {
         fetchCapStone();
-    }, [])
+    }, [no, setNo])
 
     const handleCapStone = async (e) => {
 
@@ -57,7 +55,9 @@ const Capstone = () => {
             const response = await api.post("student/capstone", newCapStone, config);
             toast.success(response.data.message);
             setFrontEndCode("");
-            setFrontEndURL("")
+            setFrontEndURL("");
+            setBackEndCode("");
+            setBackEndURL("");
             setNo((prev) => prev + 1);
             setIsLoading(false);
         } catch (error) {
@@ -185,56 +185,131 @@ const Capstone = () => {
                                     </div>
                                 </div>
                             </div>
-                            <table className="table">
-                                <thead>
-                                    <tr >
-                                        <th scope="col">Code Submission</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        {
-                                            userDetails.capstone.feCode !== "" ?
-                                                (<td> <a href={userDetails.capstone.feCode} target="_blank" > {userDetails.capstone.feCode}  <FaExternalLinkAlt /> </a>
-                                                </td>) : (<td><input type="text" className="code__submission" placeholder='Enter Front-end Source code here' /></td>)
-                                        }
-                                    </tr>
-                                    <tr>
-                                        {
-                                            userDetails.capstone.feUrl !== "" ?
-                                                (<td> <a href={userDetails.capstone.feUrl} target="_blank" > {userDetails.capstone.feUrl}  <FaExternalLinkAlt /> </a>
-                                                </td>) : (<td><input type="text" className="code__submission" placeholder='Enter Front-end Deployed URL Here' /></td>)
-                                        }
-                                    </tr>
-                                    <tr>
-                                        {
-                                            userDetails.capstone.beCode !== "" ?
-                                                (<td> <a href={userDetails.capstone.beCode} target="_blank" > {userDetails.capstone.beCode}  <FaExternalLinkAlt /> </a>
-                                                </td>) : (<td><input type="text" className="code__submission" placeholder='Enter Back-end Source code here' /></td>)
-                                        }
-                                    </tr>
-                                    <tr>
-                                        {
-                                            userDetails.capstone.beUrl !== "" ?
-                                                (<td> <a href={userDetails.capstone.beUrl} target="_blank" > {userDetails.capstone.beUrl}  <FaExternalLinkAlt /> </a>
-                                                </td>) : (<td><input type="text" className="code__submission" placeholder='Enter Back-end Deployed URL Here' /></td>)
-                                        }
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div className="text-center"><button className="submit__capstone" type="submit">Submit</button></div>
+                            {
+                                capStone &&
+                                <table className="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Code</th>
+                                            <th scope="col">Submission</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td className="codeName">Front-end Source code</td>
+                                            <td>
+                                                <a href={capStone.feCode} target="_blank" >
+                                                    {capStone.feCode}  <FaExternalLinkAlt />
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className="codeName">Front-end Deployed URL</td>
+                                            <td>
+                                                <a href={capStone.feUrl} target="_blank">
+                                                    {capStone.feUrl}   <FaExternalLinkAlt />
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className="codeName">Back-end Source code</td>
+                                            <td>
+                                                <a href={capStone.beCode} target="_blank" >
+                                                    {capStone.beCode}  <FaExternalLinkAlt />
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className="codeName">Back-end Deployed URL</td>
+                                            <td>
+                                                <a href={capStone.beUrl} target="_blank">
+                                                    {capStone.beUrl}   <FaExternalLinkAlt />
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            }
+                            {
+                                !capStone &&
+                                <form onSubmit={handleCapStone}>
+                                    <table className="table">
+                                        <thead>
+                                            <tr >
+                                                <th scope="col">Code Submission</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input
+                                                        type="url"
+                                                        className="code__submission"
+                                                        placeholder='Enter Front-end Source code'
+                                                        required
+                                                        value={frontEndCode}
+                                                        onChange={(e) => setFrontEndCode(e.target.value)}
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input
+                                                        type="url"
+                                                        className="code__submission"
+                                                        placeholder='Enter Front-end Deployed URL'
+                                                        required
+                                                        value={frontEndURL}
+                                                        onChange={(e) => setFrontEndURL(e.target.value)}
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input
+                                                        type="url"
+                                                        className="code__submission"
+                                                        placeholder='Enter Back-end Source code'
+                                                        required
+                                                        value={backEndCode}
+                                                        onChange={(e) => setBackEndCode(e.target.value)}
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input
+                                                        type="url"
+                                                        className="code__submission"
+                                                        placeholder='Enter Back-end Deployed URL'
+                                                        required
+                                                        value={backEndURL}
+                                                        onChange={(e) => setBackEndURL(e.target.value)}
+                                                    />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div className="text-center">
+                                        <button className="submit__capstone" type="submit">
+                                            {
+                                                isLoading ?
+                                                    (<span className="spinner-border spinner-border-sm text-warning"></span>)
+                                                    : "Submit"
+                                            }
+                                        </button>
+                                    </div>
+                                </form>
+                            }
                             <div className="col-12 marksContainer">
                                 <div className="row d-flex align-itmes-center justify-content-between mx-1">
                                     <div className="col-12">
                                         <div className="mx-2 mt-3">Comments:</div>
-                                        {userDetails.capstone.comment !== "" &&
-                                            <div className="mx-2 mt-0 mb-3 py-3 px-2 rounded commentsstudent">
-                                                {capStone ?
-                                                    `${capStone.comment}` : "Not submitted"
-                                                }
-                                            </div>
-                                        }
+                                        <div className="mx-2 mt-0 mb-3 py-3 px-2 rounded ">
+                                            {capStone ?
+                                                `${capStone.comment}` : "Not submitted"
+                                            }
+                                        </div>
                                         <div className="mx-2 mt-3 text-warning"><strong>Warning</strong> :- mark may be deducted automatically from your total score if your submission is beyond the deadline</div>
                                     </div>
                                 </div>
