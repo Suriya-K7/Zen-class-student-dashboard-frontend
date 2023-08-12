@@ -2,8 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import "./roadmap.css";
 import { roadMap, roadMapData } from '../../data';
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
-import Header from '../../components/header/Header';
-import Navbar from '../../components/navbar/Navbar';
 import DataContext from '../../context/DataContext';
 import api from '../../api/api';
 import { ToastContainer, Zoom, toast } from "react-toastify";

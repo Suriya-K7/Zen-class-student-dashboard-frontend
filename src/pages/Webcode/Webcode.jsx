@@ -1,18 +1,80 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import "./webcode.css";
 import { userDetails } from '../../data';
 import { FaExternalLinkAlt } from 'react-icons/fa';
+import DataContext from '../../context/DataContext';
+import api from '../../api/api';
+import { ToastContainer, Zoom, toast } from "react-toastify";
 
 
 const Webcode = () => {
+
+    const { loggedUser, token, setIsLoading, isLoading } = useContext(DataContext);
+    const [webCode, setWebcode] = useState([]);
+    const config = {
+        headers: { authorization: `bearer ${token}` },
+    }
+
+    //
+    const [frontEndCode, setFrontEndCode] = useState("");
+    const [frontEndURL, setFrontEndURL] = useState("");
+
+    const fetchWebcode = async () => {
+        try {
+            const fetchedWebcode = await api.get("student/webcode", config);
+            if (fetchedWebcode) {
+                // setWebcode(fetchWebcode[0]);
+                console.log(fetchedWebcode.data[0]);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        fetchWebcode();
+    }, [])
+
+
+    const handleWebcode = async (e) => {
+
+        e.preventDefault();
+
+        setIsLoading(true);
+
+        const newWebCode = {
+            feUrl: frontEndURL,
+            feCode: frontEndCode
+        }
+        try {
+            const response = await api.post("student/webcode", newWebCode, config);
+            toast.success(response.data.message);
+            setFrontEndCode("");
+            setFrontEndURL("")
+            setIsLoading(false);
+        } catch (error) {
+            if (error.response.data.message) {
+                toast.error(error.response.data.message)
+            } else {
+                console.log(error);
+            }
+            setIsLoading(false);
+        }
+    }
+
     return (
         <section className='task__submission'>
-            <div className="task__container mt-5" data-bs-toggle="modal" data-bs-target="#myModal">
+            <div className="task__container mt-5"
+                data-bs-toggle="modal" data-bs-target="#myModal">
                 <div className="d-flex justify-content-between">
                     <div>
                         <div className="title weight-500 pb-2">{userDetails.name}</div>
-                        <div className="row d-flex align-items-center justify-content-evenly secondaryGreyTextColor">
-                            <div className="mx-1">{userDetails.batch} - {userDetails.webcode.title}</div>
+                        <div
+                            className="row d-flex align-items-center 
+                        justify-content-evenly secondaryGreyTextColor">
+                            <div className="mx-1">
+                                {userDetails.batch} - {userDetails.webcode.title}
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -37,13 +99,22 @@ const Webcode = () => {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h4 className="modal-title">Webcode- 1</h4>
-                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            <button
+                                type="button"
+                                className="btn btn-danger"
+                                data-bs-dismiss="modal">
+                                Close
+                            </button>
                         </div>
                         <div className="mt-2">
                             <div className="px-4 d-flex flex-column gap-1">
                                 <div className="title ">{userDetails.name}</div>
-                                <div className="secondaryGreyTextColor">({userDetails.batch} - First Webcode)</div>
-                                <div className="secondaryGreyTextColor">{userDetails.webcode.title}</div>
+                                <div className="secondaryGreyTextColor">
+                                    ({userDetails.batch} - First Webcode)
+                                </div>
+                                <div className="secondaryGreyTextColor">
+                                    {userDetails.webcode.title}
+                                </div>
                                 <div className="d-flex align-items-center justify-content-between">
                                     <div className="marktag  rounded">
                                         {userDetails.webcode.score !== "" ?
@@ -73,8 +144,12 @@ const Webcode = () => {
                                             <li>Use the async/await.</li>
                                             <li>Use try-catch to handle errors.</li>
                                             <li>Use fetch() to get the data from Makeup API</li>
-                                            <li>All JavaScript codes should be in a script file named script.js which has to be imported in your HTML page.</li>
-                                            <li>The project should contain either a search filter(which should highlight the text) or pagination(shouldn't use any library).</li>
+                                            <li>All JavaScript codes should be in a
+                                                script file named script.js which has
+                                                to be imported in your HTML page.</li>
+                                            <li>The project should contain either a search
+                                                filter(which should highlight the text)
+                                                or pagination(shouldn't use any library).</li>
                                         </ul>
                                         <p><strong>How do I process the API data?</strong></p>
                                         <ul>
@@ -89,17 +164,24 @@ const Webcode = () => {
                                         <p><strong>Terms and Conditions?</strong></p>
                                         <ul>
                                             <li>You have 24 hours to complete before the deadline</li>
-                                            <li>Raise a query ticket only in the Zen portal and get your doubts resolved.&nbsp;</li>
-                                            <li>You agree to not share this confidential document with anyone.</li>
-                                            <li>You agree to open-source your code (it may even look good on your profile!). Do not mention our company’s name anywhere in the code.</li>
-                                            <li>We will never use your source code under any circumstances for any commercial purposes; this is just a basic assessment task.&nbsp;</li>
+                                            <li>Raise a query ticket only in the Zen portal and
+                                                get your doubts resolved.&nbsp;</li>
+                                            <li>You agree to not share this confidential
+                                                document with anyone.</li>
+                                            <li>You agree to open-source your code
+                                                (it may even look good on your profile!).
+                                                Do not mention our company’s name anywhere in the code.</li>
+                                            <li>We will never use your source code under any
+                                                circumstances for any commercial purposes;
+                                                this is just a basic assessment task.&nbsp;</li>
                                             <li>Submit the Netlify URL and GitHub repository URLs</li>
                                         </ul>
-                                        <p>NOTE: Any violation of Terms and conditions is strictly prohibited. You are bound to adhere to it.</p>
+                                        <p>NOTE: Any violation of Terms and conditions is
+                                            strictly prohibited. You are bound to adhere to it.</p>
                                     </div>
                                 </div>
                             </div>
-                            <table className="table">
+                            {/* <table className="table">
                                 <thead>
                                     <tr>
                                         <th scope="col">Code</th>
@@ -117,7 +199,68 @@ const Webcode = () => {
                                         <td> <a href={userDetails.webcode.url} target="_blank">{userDetails.webcode.url}   <FaExternalLinkAlt /></a></td>
                                     </tr>
                                 </tbody>
-                            </table>
+                            </table> */}
+                            <form onSubmit={handleWebcode}>
+                                <table className="table">
+                                    <thead>
+                                        <tr >
+                                            <th scope="col">Code Submission</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            {
+                                                userDetails.capstone.feCode !== "" ?
+                                                    (<td>
+                                                        <a
+                                                            href={userDetails.capstone.feCode}
+                                                            target="_blank" >
+                                                            {userDetails.capstone.feCode}
+                                                            <FaExternalLinkAlt />
+                                                        </a>
+                                                    </td>) : (<td>
+                                                        <input
+                                                            type="url"
+                                                            className="code__submission"
+                                                            placeholder='Enter Front-end Source code'
+                                                            required
+                                                            value={frontEndCode}
+                                                            onChange={(e) => setFrontEndCode(e.target.value)}
+                                                        />
+                                                    </td>)
+                                            }
+                                        </tr>
+                                        <tr>
+                                            {
+                                                userDetails.capstone.feUrl !== "" ?
+                                                    (<td>
+                                                        <a
+                                                            href={userDetails.capstone.feUrl}
+                                                            target="_blank" >
+                                                            {userDetails.capstone.feUrl}
+                                                            <FaExternalLinkAlt />
+                                                        </a>
+                                                    </td>) : (<td>
+                                                        <input
+                                                            type="text"
+                                                            className="code__submission"
+                                                            placeholder='Enter Front-end Deployed URL'
+                                                            required
+                                                            value={frontEndURL}
+                                                            onChange={(e) => setFrontEndURL(e.target.value)}
+                                                        />
+                                                    </td>)
+                                            }
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div className="text-center">
+                                    <button className="submit__capstone" type="submit">
+                                        Submit
+                                    </button>
+                                </div>
+                            </form>
                             <div className="col-12 marksContainer">
                                 <div className="row d-flex align-itmes-center justify-content-between mx-1">
                                     <div className="col-12">
@@ -129,11 +272,28 @@ const Webcode = () => {
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            <button type="button"
+                                className="btn btn-danger"
+                                data-bs-dismiss="modal">
+                                Close
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={1000}
+                transition={Zoom}
+                draggable={false}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                pauseOnHover
+                theme="dark"
+            />
         </section>
     )
 }

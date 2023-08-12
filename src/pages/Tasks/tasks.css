@@ -1,5 +1,5 @@
 .task__submission {
-  /* min-height: calc(100vh - 120px); */
+  min-height: calc(100vh - 120px);
   padding: 10px;
 }
 .task__container {

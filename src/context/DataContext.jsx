@@ -35,6 +35,11 @@ export const DataProvider = ({ children }) => {
             setLoggedUser(user.student);
             setToken(user.token)
         }
+        api.get("/")
+            .then((res) =>
+                console.log(res.data)
+            ).catch((error) =>
+                console.log(error))
     }, [])
 
     const handleSignIn = async (e) => {
@@ -62,6 +67,7 @@ export const DataProvider = ({ children }) => {
     const handleLogout = () => {
         setToken(null);
         setLoggedUser(null);
+        setHead("Class")
         navigate("/");
         localStorage.clear();
     };
