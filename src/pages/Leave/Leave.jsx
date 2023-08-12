@@ -67,38 +67,20 @@ const Leave = () => {
 
     return (
         <section className='leave'>
-            <div className="btn__container"><button className="btn addBtn" type="button" data-bs-toggle="modal" data-bs-target="#myModal" > <BiPlus />Add</button></div>
+            <div className="btn__container">
+                <button className="btn addBtn" type="button" data-bs-toggle="modal" data-bs-target="#myModal" >
+                    <BiPlus />Add
+                </button>
+            </div>
             <br />
-            {/* {
-                leaveData.length &&
-                leaveData.map((data) => {
-                    return (<div className="task__container" key={data.id} data-bs-toggle="modal" data-bs-target="#leaveModal" >
-                        <div className="flexCont">
-                            <div>
-                                <div className="title weight-500">Reason</div>
-                                <div className="row d-flex align-items-center justify-content-evenly secondaryGreyTextColor">
-                                    <div className="mx-1">{data.reason}</div>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="mx-1 secondaryGreyTextColor">Applied on {data.date}</div>
-                                <div className="ml-3 mr-1 d-flex align-self-end justify-content-end">
-                                    <div className="marktag mx-1 px-3 rounded">
-                                        Status : -
-                                    </div>
-                                    <div className="tasktag px-2 rounded">{
-                                        data.status ? "Approved" : "Pending"
-                                    }</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>)
-                })
-            } */}
             {
                 leave &&
                 leave.map((data) => {
-                    return (<div className="task__container" key={data._id} data-bs-toggle="modal" data-bs-target={`#leaveModal${data._id}`} >
+                    return (<div
+                        className="task__container"
+                        key={data._id}
+                        data-bs-toggle="modal"
+                        data-bs-target={`#leaveModal${data._id}`} >
                         <div className="flexCont">
                             <div>
                                 <div className="title weight-500">Reason</div>
@@ -126,7 +108,9 @@ const Leave = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div className="modal-body">
-                            <form onSubmit={(e) => e.preventDefault()} className="d-flex justify-content-center flex-column mt-2">
+                            <form
+                                onSubmit={(e) => e.preventDefault()}
+                                className="d-flex justify-content-center flex-column mt-2">
                                 <div className="form-group mt-1">
                                     <label htmlFor="date" className="label__style mb-0">On</label>
                                     <div>
@@ -157,7 +141,9 @@ const Leave = () => {
                                 </div>
                                 <div className="modal-footer">
                                     <button className="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                                    <button type="submit" onClick={handleAddLeave} className="btn submit__btn" data-bs-dismiss="modal"  >Create</button>
+                                    <button
+                                        type="submit" onClick={handleAddLeave}
+                                        className="btn submit__btn" data-bs-dismiss="modal"  >Create</button>
                                 </div>
                             </form>
                         </div>
@@ -175,8 +161,12 @@ const Leave = () => {
                                         <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                                     </div>
                                     <div className="modal-body">
-                                        <button type="reset" className="btn submit__btn" data-bs-dismiss="modal" ref={id} onClick={() => handleLeaveCancel(data._id)
-                                        } >Confirm</button>
+                                        <button type="reset"
+                                            className="btn submit__btn"
+                                            data-bs-dismiss="modal"
+                                            ref={id}
+                                            onClick={() => handleLeaveCancel(data._id)
+                                            } >Confirm</button>
                                         <button type="submit" className="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                                     </div>
                                 </div>
@@ -185,20 +175,6 @@ const Leave = () => {
                     )
                 })
             }
-            {/* <div className="modal" id="leaveModal">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h4 className="modal-title">Confirm Leave Cancellation</h4>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div className="modal-body">
-                            <button type="reset" className="btn submit__btn">Confirm</button>
-                            <button type="submit" className="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
             <ToastContainer
                 position="top-right"
                 autoClose={1000}
