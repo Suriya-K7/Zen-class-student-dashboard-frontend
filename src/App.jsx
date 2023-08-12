@@ -1,9 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import Header from './components/header/Header';
 import './App.css';
-import { toast } from "react-toastify";
-import api from "./api/api";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Application from './pages/Application/Application';
 import Capstone from './pages/Capstone/Capstone';
 import Certificate from './pages/Certificate/Certificate';
@@ -23,7 +21,7 @@ import Navbar from './components/navbar/Navbar';
 import Roadmap from './pages/Roadmap/Roadmap';
 import Profile from './pages/Profile/Profile';
 import Login from './pages/Login/Login';
-import DataContext, { DataProvider } from './context/DataContext';
+import DataContext from './context/DataContext';
 import LoggedOut from './pages/LoggedOut/LoggedOut';
 import Signup from './pages/signup/Signup';
 import Forgot from './pages/forgot/Forgot';
@@ -57,11 +55,6 @@ function App() {
             <Route path='/*' element={<LoggedOut />} />
           </>
         }
-        {/* <Route path='/' element={<Login />} />
-        <Route path='/forgot' element={<Forgot />} />
-        <Route path='/signup' element={<Signup />} />
-        <Route path='/reset/:id' element={<Reset />} />
-        <Route path='/confirm/:id' element={<ConfirmUser />} /> */}
         {
           loggedUser &&
           <>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import "./tasks.css";
-// import { userDetails, roadMapData, taskData } from '../../data';
 import TaskUrl from '../../components/taskUrl/TaskUrl';
 import { useContext } from 'react';
 import DataContext from '../../context/DataContext';

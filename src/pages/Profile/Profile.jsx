@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import "./profile.css"
 import DataContext from '../../context/DataContext';
 

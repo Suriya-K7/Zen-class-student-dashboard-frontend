@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import LOGO from "../../assets/logo.png";
 import BANNER from "../../assets/banner.png";
 import { Link } from 'react-router-dom';
-import { ToastContainer, Zoom } from "react-toastify";
 import DataContext from '../../context/DataContext';
 
 const Signup = () => {

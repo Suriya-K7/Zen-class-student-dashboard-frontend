@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import "./queries.css";
 import { BiPlus } from "react-icons/bi";
 import DataContext from '../../context/DataContext';
