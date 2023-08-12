@@ -9,8 +9,12 @@ import { ToastContainer, Zoom, toast } from "react-toastify";
 
 const Webcode = () => {
 
-    const { loggedUser, token, setIsLoading, isLoading } = useContext(DataContext);
-    const [webCode, setWebcode] = useState([]);
+    const { loggedUser,
+        token,
+        setIsLoading,
+        isLoading } = useContext(DataContext);
+    const [no, setNo] = useState(0);
+    const [webCode, setWebcode] = useState(null);
     const config = {
         headers: { authorization: `bearer ${token}` },
     }
@@ -23,8 +27,7 @@ const Webcode = () => {
         try {
             const fetchedWebcode = await api.get("student/webcode", config);
             if (fetchedWebcode) {
-                // setWebcode(fetchWebcode[0]);
-                console.log(fetchedWebcode.data[0]);
+                setWebcode(fetchedWebcode.data[0]);
             }
         } catch (error) {
             console.log(error);
@@ -33,7 +36,7 @@ const Webcode = () => {
 
     useEffect(() => {
         fetchWebcode();
-    }, [])
+    }, [no, setNo])
 
 
     const handleWebcode = async (e) => {
@@ -51,6 +54,7 @@ const Webcode = () => {
             toast.success(response.data.message);
             setFrontEndCode("");
             setFrontEndURL("")
+            setNo((prev) => prev + 1);
             setIsLoading(false);
         } catch (error) {
             if (error.response.data.message) {
@@ -68,25 +72,28 @@ const Webcode = () => {
                 data-bs-toggle="modal" data-bs-target="#myModal">
                 <div className="d-flex justify-content-between">
                     <div>
-                        <div className="title weight-500 pb-2">{userDetails.name}</div>
+                        <div className="title weight-500 pb-2">
+                            {loggedUser.name ? loggedUser.name : loggedUser.student.name}
+                            {loggedUser.lName ? loggedUser.lName : loggedUser.student.lName}
+                        </div>
                         <div
                             className="row d-flex align-items-center 
                         justify-content-evenly secondaryGreyTextColor">
                             <div className="mx-1">
-                                {userDetails.batch} - {userDetails.webcode.title}
+                                {loggedUser.batch ? loggedUser.batch : loggedUser.student.batch} - Make Up API
                             </div>
                         </div>
                     </div>
                     <div>
                         <div className="mx-1 secondaryGreyTextColor text-center pb-2">
-                            {userDetails.webcode.date !== "" ?
-                                `submitted on ${userDetails.webcode.date}` : "Not Submitted"
+                            {webCode ?
+                                `submitted on ${webCode.submittedOn.slice(0, 10)}` : "Not Submitted"
                             }
                         </div>
                         <div className="ml-3 mr-1 d-flex align-self-end justify-content-end">
                             <div className="marktag mx-1 px-3 rounded">
-                                {userDetails.webcode.score !== "" ?
-                                    `score : - ${userDetails.webcode.score}` : "Pending"
+                                {webCode ?
+                                    `score : - ${webCode.score}` : "Pending"
                                 }
                             </div>
                             <div className="tasktag px-2 rounded">Webcode</div>
@@ -108,24 +115,27 @@ const Webcode = () => {
                         </div>
                         <div className="mt-2">
                             <div className="px-4 d-flex flex-column gap-1">
-                                <div className="title ">{userDetails.name}</div>
-                                <div className="secondaryGreyTextColor">
-                                    ({userDetails.batch} - First Webcode)
+                                <div className="title ">
+                                    {loggedUser.name ? loggedUser.name : loggedUser.student.name}
+                                    {loggedUser.lName ? loggedUser.lName : loggedUser.student.lName}
                                 </div>
                                 <div className="secondaryGreyTextColor">
-                                    {userDetails.webcode.title}
+                                    ({loggedUser.batch ? loggedUser.batch : loggedUser.student.batch} - First Webcode)
+                                </div>
+                                <div className="secondaryGreyTextColor">
+                                    Title:- Make Up API
                                 </div>
                                 <div className="d-flex align-items-center justify-content-between">
                                     <div className="marktag  rounded">
-                                        {userDetails.webcode.score !== "" ?
-                                            `score : - ${userDetails.webcode.score}` : "Pending"
+                                        {webCode ?
+                                            `score : - ${webCode.score}` : "Pending"
                                         }
                                     </div>
-                                    <div className="tasktag px-2 rounded">webCode</div>
+                                    <div className="tasktag px-2 rounded">WebCode</div>
                                 </div>
                                 <div className="secondaryGreyTextColor">
-                                    {userDetails.webcode.date !== "" ?
-                                        `submitted on ${userDetails.webcode.date}` : "Not Submitted"
+                                    {webCode ?
+                                        `submitted on ${webCode.submittedOn.slice(0, 10)}` : "Not Submitted"
                                     }
                                 </div>
                             </div>
@@ -181,91 +191,89 @@ const Webcode = () => {
                                     </div>
                                 </div>
                             </div>
-                            {/* <table className="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Code</th>
-                                        <th scope="col">Submission</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="codeName">Front-end Source code</td>
-                                        <td> <a href={userDetails.webcode.code} target="_blank" > {userDetails.webcode.code}  <FaExternalLinkAlt /> </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="codeName">Front-end Deployed URL</td>
-                                        <td> <a href={userDetails.webcode.url} target="_blank">{userDetails.webcode.url}   <FaExternalLinkAlt /></a></td>
-                                    </tr>
-                                </tbody>
-                            </table> */}
-                            <form onSubmit={handleWebcode}>
+                            {
+                                webCode &&
                                 <table className="table">
                                     <thead>
-                                        <tr >
-                                            <th scope="col">Code Submission</th>
-
+                                        <tr>
+                                            <th scope="col">Code</th>
+                                            <th scope="col">Submission</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            {
-                                                userDetails.capstone.feCode !== "" ?
-                                                    (<td>
-                                                        <a
-                                                            href={userDetails.capstone.feCode}
-                                                            target="_blank" >
-                                                            {userDetails.capstone.feCode}
-                                                            <FaExternalLinkAlt />
-                                                        </a>
-                                                    </td>) : (<td>
-                                                        <input
-                                                            type="url"
-                                                            className="code__submission"
-                                                            placeholder='Enter Front-end Source code'
-                                                            required
-                                                            value={frontEndCode}
-                                                            onChange={(e) => setFrontEndCode(e.target.value)}
-                                                        />
-                                                    </td>)
-                                            }
+                                            <td className="codeName">Front-end Source code</td>
+                                            <td>
+                                                <a href={webCode.feCode} target="_blank" >
+                                                    {webCode.feCode}  <FaExternalLinkAlt />
+                                                </a>
+                                            </td>
                                         </tr>
                                         <tr>
-                                            {
-                                                userDetails.capstone.feUrl !== "" ?
-                                                    (<td>
-                                                        <a
-                                                            href={userDetails.capstone.feUrl}
-                                                            target="_blank" >
-                                                            {userDetails.capstone.feUrl}
-                                                            <FaExternalLinkAlt />
-                                                        </a>
-                                                    </td>) : (<td>
-                                                        <input
-                                                            type="text"
-                                                            className="code__submission"
-                                                            placeholder='Enter Front-end Deployed URL'
-                                                            required
-                                                            value={frontEndURL}
-                                                            onChange={(e) => setFrontEndURL(e.target.value)}
-                                                        />
-                                                    </td>)
-                                            }
+                                            <td className="codeName">Front-end Deployed URL</td>
+                                            <td>
+                                                <a href={webCode.feUrl} target="_blank">
+                                                    {webCode.feUrl}   <FaExternalLinkAlt />
+                                                </a>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div className="text-center">
-                                    <button className="submit__capstone" type="submit">
-                                        Submit
-                                    </button>
-                                </div>
-                            </form>
+                            }
+                            {
+                                !webCode &&
+                                <form onSubmit={handleWebcode}>
+                                    <table className="table">
+                                        <thead>
+                                            <tr >
+                                                <th scope="col">Code Submission</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input
+                                                        type="url"
+                                                        className="code__submission"
+                                                        placeholder='Enter Front-end Source code'
+                                                        required
+                                                        value={frontEndCode}
+                                                        onChange={(e) => setFrontEndCode(e.target.value)}
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input
+                                                        type="text"
+                                                        className="code__submission"
+                                                        placeholder='Enter Front-end Deployed URL'
+                                                        required
+                                                        value={frontEndURL}
+                                                        onChange={(e) => setFrontEndURL(e.target.value)}
+                                                    />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div className="text-center">
+                                        <button className="submit__capstone" type="submit">
+                                            Submit
+                                        </button>
+                                    </div>
+                                </form>
+                            }
+
                             <div className="col-12 marksContainer">
                                 <div className="row d-flex align-itmes-center justify-content-between mx-1">
                                     <div className="col-12">
                                         <div className="mx-2 mt-3">Comments:</div>
-                                        <div className="mx-2 mt-0 mb-3 py-3 px-2 rounded commentsstudent">{userDetails.webcode.comment}</div>
+                                        <div className="mx-2 mt-0 mb-3 py-3 px-2 rounded commentsstudent">
+                                            {webCode ?
+                                                `${webCode.comment}` : "Not submitted"
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                                 <hr className="containerDivider mx-1" />

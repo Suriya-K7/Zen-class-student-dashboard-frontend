@@ -1,29 +1,100 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./capstone.css";
 import { userDetails } from '../../data';
 import { FaExternalLinkAlt } from 'react-icons/fa';
+import { useContext } from 'react';
+import DataContext from '../../context/DataContext';
+import api from '../../api/api';
+import { ToastContainer, Zoom, toast } from "react-toastify";
 
 const Capstone = () => {
+    const { loggedUser,
+        token,
+        setIsLoading,
+        isLoading } = useContext(DataContext);
+    const [no, setNo] = useState(0);
+    const [capStone, setCapStone] = useState(null);
+    const config = {
+        headers: { authorization: `bearer ${token}` },
+    }
+
+    //
+    const [frontEndCode, setFrontEndCode] = useState("");
+    const [frontEndURL, setFrontEndURL] = useState("");
+    const [backEndCode, setBackEndCode] = useState("");
+    const [backEndURL, setBackEndURL] = useState("");
+
+    const fetchCapStone = async () => {
+        try {
+            const fetcheCapStone = await api.get("student/capstone", config);
+            if (fetcheCapStone) {
+                // setCapStone(fetcheCapStone.data[0]);
+                console.log(fetcheCapStone.data[0]);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        fetchCapStone();
+    }, [])
+
+    const handleCapStone = async (e) => {
+
+        e.preventDefault();
+
+        setIsLoading(true);
+
+        const newCapStone = {
+            feUrl: frontEndURL,
+            feCode: frontEndCode,
+            beUrl: backEndURL,
+            beCode: backEndCode,
+        }
+
+        try {
+            const response = await api.post("student/capstone", newCapStone, config);
+            toast.success(response.data.message);
+            setFrontEndCode("");
+            setFrontEndURL("")
+            setNo((prev) => prev + 1);
+            setIsLoading(false);
+        } catch (error) {
+            if (error.response.data.message) {
+                toast.error(error.response.data.message)
+            } else {
+                console.log(error);
+            }
+            setIsLoading(false);
+        }
+    }
+
     return (
         <section className='task__submission'>
             <div className="task__container mt-5" data-bs-toggle="modal" data-bs-target="#myModal">
                 <div className="d-flex justify-content-between">
                     <div>
-                        <div className="title weight-500 pb-2">{userDetails.name}</div>
+                        <div className="title weight-500 pb-2">
+                            {loggedUser.name ? loggedUser.name : loggedUser.student.name}
+                            {loggedUser.lName ? loggedUser.lName : loggedUser.student.lName}
+                        </div>
                         <div className="row d-flex align-items-center justify-content-evenly secondaryGreyTextColor">
-                            <div className="mx-1">{userDetails.batch} - {userDetails.capstone.title}</div>
+                            <div className="mx-1">
+                                {loggedUser.batch ? loggedUser.batch : loggedUser.student.batch} - Zen Class Student Dashboard
+                            </div>
                         </div>
                     </div>
                     <div>
                         <div className="mx-1 secondaryGreyTextColor text-center pb-2">
-                            {userDetails.capstone.date !== "" ?
-                                `submitted on ${userDetails.capstone.date}` : "Not Submitted"
+                            {capStone ?
+                                `submitted on ${capStone.submittedOn.slice(0, 10)}` : "Not Submitted"
                             }
                         </div>
                         <div className="ml-3 mr-1 d-flex align-self-end justify-content-end">
                             <div className="marktag mx-1 px-3 rounded">
-                                {userDetails.capstone.score !== "" ?
-                                    `score : - ${userDetails.capstone.score}` : "Pending"
+                                {capStone ?
+                                    `score : - ${capStone.score}` : "Pending"
                                 }
                             </div>
                             <div className="tasktag px-2 rounded">Capstone</div>
@@ -40,20 +111,23 @@ const Capstone = () => {
                         </div>
                         <div className="mt-2">
                             <div className="px-4 d-flex flex-column gap-1">
-                                <div className="title ">{userDetails.name}</div>
-                                <div className="secondaryGreyTextColor">({userDetails.batch} - First Capstone)</div>
-                                <div className="secondaryGreyTextColor">Task Title:- {userDetails.capstone.title}</div>
+                                <div className="title ">
+                                    {loggedUser.name ? loggedUser.name : loggedUser.student.name}
+                                    {loggedUser.lName ? loggedUser.lName : loggedUser.student.lName}
+                                </div>
+                                <div className="secondaryGreyTextColor">({loggedUser.batch ? loggedUser.batch : loggedUser.student.batch} - First Capstone)</div>
+                                <div className="secondaryGreyTextColor">Task Title:- Zen Class Student Dashboard</div>
                                 <div className="d-flex align-items-center justify-content-between">
                                     <div className="marktag  rounded">
-                                        {userDetails.capstone.score !== "" ?
-                                            `score : - ${userDetails.capstone.score}` : "Pending"
+                                        {capStone ?
+                                            `score : - ${capStone.score}` : "Pending"
                                         }
                                     </div>
                                     <div className="tasktag px-2 rounded">Capstone</div>
                                 </div>
                                 <div className="secondaryGreyTextColor">
-                                    {userDetails.capstone.date !== "" ?
-                                        `submitted on ${userDetails.capstone.date}` : "Not Submitted"
+                                    {capStone ?
+                                        `submitted on ${capStone.submittedOn.slice(0, 10)}` : "Not Submitted"
                                     }
                                 </div>
                             </div>
@@ -153,8 +227,13 @@ const Capstone = () => {
                             <div className="col-12 marksContainer">
                                 <div className="row d-flex align-itmes-center justify-content-between mx-1">
                                     <div className="col-12">
+                                        <div className="mx-2 mt-3">Comments:</div>
                                         {userDetails.capstone.comment !== "" &&
-                                            <div className="mx-2 mt-0 mb-3 py-3 px-2 rounded commentsstudent">{userDetails.capstone.comment}</div>
+                                            <div className="mx-2 mt-0 mb-3 py-3 px-2 rounded commentsstudent">
+                                                {capStone ?
+                                                    `${capStone.comment}` : "Not submitted"
+                                                }
+                                            </div>
                                         }
                                         <div className="mx-2 mt-3 text-warning"><strong>Warning</strong> :- mark may be deducted automatically from your total score if your submission is beyond the deadline</div>
                                     </div>
@@ -168,6 +247,19 @@ const Capstone = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={1000}
+                transition={Zoom}
+                draggable={false}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                pauseOnHover
+                theme="dark"
+            />
         </section>
     )
 }
