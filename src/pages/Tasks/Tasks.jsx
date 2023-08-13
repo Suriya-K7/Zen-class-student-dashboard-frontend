@@ -1,29 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import "./tasks.css";
 import TaskUrl from '../../components/taskUrl/TaskUrl';
 import { useContext } from 'react';
 import DataContext from '../../context/DataContext';
-import api from '../../api/api';
+
 
 const Tasks = () => {
-    const { loggedUser, token } = useContext(DataContext);
-    const name = loggedUser.name + " " + loggedUser.lName;
-    const batch = loggedUser.batch;
-    const [DBTask, setDBTask] = useState([]);
-    const config = {
-        headers: { authorization: `bearer ${token}` },
-    }
+    const { loggedUser, fetchTask, DBTask } = useContext(DataContext);
 
-    const fetchTask = async () => {
-        try {
-            const fetchedTask = await api.get("student/task", config);
-            if (fetchedTask) {
-                setDBTask(fetchedTask.data);
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
     useEffect(() => {
         fetchTask();
     }, []);
@@ -39,35 +23,36 @@ const Tasks = () => {
                         data-bs-toggle="modal"
                         data-bs-target={`#${item._id}`}>
                         <div className="flexCont">
-                            <div>
-                                <div className="title weight-500">{name}</div>
+                            <div className='flexCont__data'>
+                                <div className="title weight-500">
+                                    {loggedUser.name + " " + loggedUser.lName}
+                                </div>
                                 <div className="row 
                                 d-flex 
                                 align-items-center 
                                 justify-content-evenly 
                                 secondaryGreyTextColor">
-                                    <div className="mx-1">({batch})</div>
+                                    <div className="mx-1">({loggedUser.batch})</div>
                                     <div className="mx-1">
                                     </div>
                                     <div className="">{item.title}</div>
                                 </div>
                             </div>
-                            <div>
+                            <div className='d-flex flex-column align-items-center gap-3'>
                                 <div
-                                    className="mx-1 secondaryGreyTextColor">
-                                    submitted on
+                                    className="secondaryGreyTextColor">
+                                    submitted on{" "}
                                     {item.submittedOn.slice(0, 10)}
                                 </div>
                                 <div
-                                    className="ml-3 mr-1 d-flex 
-                                align-self-end justify-content-end">
+                                    className="ml-3 mr-1">
                                     <div
-                                        className="marktag mx-1 px-3 rounded">
-                                        score : - {item.score}
+                                        className="marktag tasktag mx-1 px-3 rounded">
+                                        Task score : - {item.score}
                                     </div>
-                                    <div
+                                    {/* <div
                                         className="tasktag px-2 rounded">
-                                        Task</div>
+                                        Task</div> */}
                                 </div>
                             </div>
                         </div>

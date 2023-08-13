@@ -1,68 +1,27 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import "./queries.css";
 import { BiPlus } from "react-icons/bi";
 import DataContext from '../../context/DataContext';
-import api from '../../api/api';
-import { ToastContainer, Zoom, toast } from "react-toastify";
+import { ToastContainer, Zoom } from "react-toastify";
 
 const Queries = () => {
-    const { token } = useContext(DataContext);
-    const [queryTitle, setQueryTitle] = useState("");
-    const [queryDesc, setQueryDesc] = useState("");
-    const [query, setQuery] = useState([]);
-    const [clicked, setClicked] = useState(0);
-    const config = {
-        headers: { authorization: `bearer ${token}` },
-    }
+    const { queryTitle,
+        setQueryTitle,
+        queryDesc,
+        setQueryDesc,
+        query,
+        trigger,
+        setTrigger,
+        fetchQuery,
+        handleAddQuery,
+        handleQueryCancel,
+        isLoading
+    } = useContext(DataContext);
 
-    const fetchQuery = async () => {
-        try {
-            const fetchedQuery = await api.get("student/query", config);
-            if (fetchedQuery) {
-                setQuery(fetchedQuery.data);
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    const handleAddQuery = async () => {
-
-        const data = {
-            queryTitle, queryDesc
-        }
-        try {
-            const response = await api.post("student/query", data, config);
-            setQueryTitle("");
-            setQueryDesc("");
-            toast.success(response.data.message);
-            setClicked((prev) => prev + 1);
-        } catch (error) {
-            if (error.response.data.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.log(error);
-            }
-        }
-    }
-
-    const handleQueryCancel = async (data) => {
-        try {
-            const response = await api.delete(`student/query/${data}`, config);
-            toast.success(response.data.message);
-            setClicked((prev) => prev + 1);
-        } catch (error) {
-            if (error.response.data.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.log(error);
-            }
-        }
-    }
 
     useEffect(() => {
         fetchQuery();
-    }, [clicked]);
+    }, [trigger, setTrigger]);
 
     return (
         <section className='leave'>
@@ -146,7 +105,14 @@ const Queries = () => {
                                 </div>
                                 <div className="modal-footer text-center">
                                     <div className='text-center w-100'>
-                                        <button type="submit" onClick={handleAddQuery} className="btn submit__btn w-100">Create</button>
+                                        <button type="submit" onClick={handleAddQuery} className="btn submit__btn w-100">
+                                            {
+                                                isLoading ?
+                                                    (<span className="spinner-border spinner-border-sm text-warning">
+                                                    </span>)
+                                                    : "Create"
+                                            }
+                                        </button>
                                     </div>
                                 </div>
                             </form>

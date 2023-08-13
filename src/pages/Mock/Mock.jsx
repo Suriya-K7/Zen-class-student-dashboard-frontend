@@ -1,34 +1,14 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import "./mock.css";
-import { mockData } from "../../data";
 import DataContext from '../../context/DataContext';
-import api from '../../api/api';
 
 const Mock = () => {
-
-
     //
-    const { token, loggedUser } = useContext(DataContext);
-    const [mock, setMock] = useState([]);
-    const [clicked, setClicked] = useState(0);
-    const config = {
-        headers: { authorization: `bearer ${token}` },
-    }
+    const { mock, loggedUser, fetchMock } = useContext(DataContext);
 
-    const fetchMock = async () => {
-        try {
-            const fetchedMock = await api.get("student/mock", config);
-            if (fetchedMock) {
-                setMock(fetchedMock.data);
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
     useEffect(() => {
         fetchMock();
-    }, [clicked]);
-    console.log(mock);
+    }, []);
     //
     return (
         <section className='mock mt-5'>
@@ -150,6 +130,11 @@ const Mock = () => {
                         </div>
                     )
                 })
+            }
+            {
+                !mock.length
+                &&
+                <h3 className='text-center mt-3'>Mock interwiew not Assigned</h3>
             }
         </section>
     )

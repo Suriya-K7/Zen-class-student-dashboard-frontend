@@ -1,24 +1,33 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import "./roadmap.css";
 import { roadMap, roadMapData, roadMapRes } from '../../data';
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
 import DataContext from '../../context/DataContext';
-import api from '../../api/api';
-import { ToastContainer, Zoom, toast } from "react-toastify";
+import { ToastContainer, Zoom } from "react-toastify";
 import { FaGooglePlay } from 'react-icons/fa';
 
 
 const Roadmap = () => {
-    const { loggedUser, token, setIsLoading, isLoading, width } = useContext(DataContext);
-    const [day, setDay] = useState(0);
-    const [data, setData] = useState(roadMapData[0]);
-    const [flag, setFlag] = useState(true);
+    const { isLoading,
+        head,
+        width,
+        day,
+        setDay,
+        data,
+        setData,
+        flag,
+        setFlag,
+        frontEndCode,
+        setFrontEndCode,
+        frontEndURL,
+        setFrontEndURL,
+        backEndCode,
+        setBackEndCode,
+        backEndURL,
+        setBackEndURL,
+        handleTask
 
-    //
-    const [frontEndCode, setFrontEndCode] = useState("");
-    const [frontEndURL, setFrontEndURL] = useState("");
-    const [backEndCode, setBackEndCode] = useState("");
-    const [backEndURL, setBackEndURL] = useState("");
+    } = useContext(DataContext);
 
     //
     useEffect(() => {
@@ -27,52 +36,7 @@ const Roadmap = () => {
         setFrontEndURL("");
         setBackEndCode("");
         setBackEndURL("");
-    }, [day]);
-
-    // 
-
-    const handleTask = async (e) => {
-
-        e.preventDefault();
-
-        setIsLoading(true)
-
-        const config = {
-            headers: {
-                authorization: `bearer ${token}`,
-            },
-        };
-        let check = loggedUser.email ? loggedUser.email : loggedUser.student.email;
-        check = check + day;
-        const newTask = {
-            day,
-            frontEndCode,
-            frontEndURL,
-            backEndCode,
-            backEndURL,
-            task: data.task,
-            title: data.title,
-            check,
-        };
-
-        try {
-            const response = await api.post("/student/task", newTask, config);
-            toast.success(response.data.message);
-            setBackEndCode("");
-            setBackEndURL("");
-            setFrontEndCode("");
-            setFrontEndURL("");
-            setIsLoading(false);
-        } catch (error) {
-            if (error.response.data.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.log(error);
-            }
-            setIsLoading(false);
-        }
-    }
-
+    }, [day, head]);
 
     return (
         <section className='roadmap'>

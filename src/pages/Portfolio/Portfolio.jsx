@@ -1,68 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import "./portfolio.css";
 import { useContext } from 'react';
 import DataContext from '../../context/DataContext';
-import api from '../../api/api';
-import { ToastContainer, Zoom, toast } from "react-toastify";
+import { ToastContainer, Zoom } from "react-toastify";
 
 const Portfolio = () => {
-    const { token, setIsLoading, isLoading } = useContext(DataContext);
-    const [no, setNo] = useState(0);
-    const [portfolio, setPortfolio] = useState(null);
-    const config = {
-        headers: { authorization: `bearer ${token}` },
-    }
+    const {
+        portfolio,
+        portfolioURL,
+        setPortfolioURL,
+        githubURL,
+        setGithubURL,
+        resumeURL,
+        setResumeURL,
+        fetchPortfolio,
+        handlePortfolio,
+        isLoading,
+        trigger,
+        setTrigger, } = useContext(DataContext);
 
-    //
-    const [portfolioURL, setPortfolioURL] = useState("");
-    const [githubURL, setGithubURL] = useState("");
-    const [resumeURL, setResumeURL] = useState("");
-
-    const fetchPortfolio = async () => {
-        try {
-            const fetchedPortfolio = await api.get("student/portfolio", config);
-            if (fetchedPortfolio) {
-                setPortfolio(fetchedPortfolio.data[0]);
-                console.log(fetchedPortfolio.data[0]);
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
     useEffect(() => {
         fetchPortfolio();
-    }, [no, setNo]);
-
-    const handlePortfolio = async (e) => {
-
-        e.preventDefault();
-
-        setIsLoading(true);
-
-        const newPortfolio = {
-            portfolioURL,
-            githubURL,
-            resumeURL
-        }
-
-        try {
-            const response = await api.post("student/portfolio", newPortfolio, config);
-            toast.success(response.data.message);
-            setGithubURL("");
-            setPortfolioURL("");
-            setResumeURL("");
-            setNo((prev) => prev + 1);
-            setIsLoading(false);
-        } catch (error) {
-            if (error.response.data.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.log(error);
-            }
-            setIsLoading(false);
-        }
-    }
+    }, [trigger, setTrigger]);
 
     return (
         <section className='portfolio'>

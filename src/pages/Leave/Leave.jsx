@@ -1,74 +1,32 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import "./leave.css";
 import { BiPlus } from "react-icons/bi";
 import DataContext from '../../context/DataContext';
-import api from '../../api/api';
-import { ToastContainer, Zoom, toast } from "react-toastify";
+import { ToastContainer, Zoom } from "react-toastify";
 
 const Leave = () => {
-    const { token } = useContext(DataContext);
-    const [reason, setReason] = useState("");
-    const [appliedOn, setAppliedOn] = useState("");
-    const [leave, setLeave] = useState([]);
-    const [clicked, setClicked] = useState(0);
-    const id = useRef();
-    const config = {
-        headers: { authorization: `bearer ${token}` },
-    }
+    const { leave,
+        reason,
+        setReason,
+        appliedOn,
+        setAppliedOn,
+        trigger,
+        setTrigger,
+        fetchLeave,
+        handleAddLeave,
+        handleLeaveCancel,
+        isLoading } = useContext(DataContext);
 
-    const fetchLeave = async () => {
-        try {
-            const fetchedLeave = await api.get("student/leave", config);
-            if (fetchedLeave) {
-                setLeave(fetchedLeave.data);
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    const handleAddLeave = async () => {
-        const data = {
-            reason, appliedOn
-        }
-        try {
-            const response = await api.post("student/leave", data, config);
-            setReason("");
-            setAppliedOn("");
-            toast.success(response.data.message);
-            setClicked((prev) => prev + 1);
-        } catch (error) {
-            if (error.response.data.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.log(error);
-            }
-        }
-    }
-
-    const handleLeaveCancel = async (data) => {
-        try {
-            const response = await api.delete(`student/leave/${data}`, config);
-            toast.success(response.data.message);
-            setClicked((prev) => prev + 1);
-        } catch (error) {
-            if (error.response.data.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.log(error);
-            }
-        }
-    }
 
     useEffect(() => {
         fetchLeave();
-    }, [clicked]);
+    }, [trigger, setTrigger]);
 
     return (
         <section className='leave'>
             <div className="btn__container">
                 <button className="btn addBtn" type="button" data-bs-toggle="modal" data-bs-target="#myModal" >
-                    <BiPlus />Add
+                    <BiPlus />Add Leave
                 </button>
             </div>
             <br />
@@ -142,7 +100,14 @@ const Leave = () => {
                                     <div className='text-center w-100'>
                                         <button
                                             type="submit" onClick={handleAddLeave}
-                                            className="btn submit__btn w-100" >Create</button>
+                                            className="btn submit__btn w-100" >
+                                            {
+                                                isLoading ?
+                                                    (<span className="spinner-border spinner-border-sm text-warning">
+                                                    </span>)
+                                                    : "Create"
+                                            }
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -165,7 +130,6 @@ const Leave = () => {
                                         <button type="reset"
                                             className="btn submit__btn"
                                             data-bs-dismiss="modal"
-                                            ref={id}
                                             onClick={() => handleLeaveCancel(data._id)
                                             } >Confirm</button>
                                         <button type="submit" className="btn btn-danger" data-bs-dismiss="modal">Cancel</button>

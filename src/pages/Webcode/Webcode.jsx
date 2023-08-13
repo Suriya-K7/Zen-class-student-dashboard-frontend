@@ -1,69 +1,33 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import "./webcode.css";
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import DataContext from '../../context/DataContext';
-import api from '../../api/api';
-import { ToastContainer, Zoom, toast } from "react-toastify";
+import { ToastContainer, Zoom } from "react-toastify";
 
 
 const Webcode = () => {
 
     const { loggedUser,
-        token,
-        setIsLoading,
+        head,
+        frontEndCode,
+        frontEndURL,
+        webCode,
+        fetchWebcode,
+        handleWebcode,
+        trigger,
+        setTrigger,
+        setFrontEndCode,
+        setFrontEndURL,
         isLoading } = useContext(DataContext);
-    const [no, setNo] = useState(0);
-    const [webCode, setWebcode] = useState(null);
-    const config = {
-        headers: { authorization: `bearer ${token}` },
-    }
-
-    //
-    const [frontEndCode, setFrontEndCode] = useState("");
-    const [frontEndURL, setFrontEndURL] = useState("");
-
-    const fetchWebcode = async () => {
-        try {
-            const fetchedWebcode = await api.get("student/webcode", config);
-            if (fetchedWebcode) {
-                setWebcode(fetchedWebcode.data[0]);
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
     useEffect(() => {
         fetchWebcode();
-    }, [no, setNo])
+    }, [trigger, setTrigger])
 
-
-    const handleWebcode = async (e) => {
-
-        e.preventDefault();
-
-        setIsLoading(true);
-
-        const newWebCode = {
-            feUrl: frontEndURL,
-            feCode: frontEndCode
-        }
-        try {
-            const response = await api.post("student/webcode", newWebCode, config);
-            toast.success(response.data.message);
-            setFrontEndCode("");
-            setFrontEndURL("")
-            setNo((prev) => prev + 1);
-            setIsLoading(false);
-        } catch (error) {
-            if (error.response.data.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.log(error);
-            }
-            setIsLoading(false);
-        }
-    }
+    useEffect(() => {
+        setFrontEndCode("");
+        setFrontEndURL("");
+    }, [head])
 
     return (
         <section className='task__submission'>

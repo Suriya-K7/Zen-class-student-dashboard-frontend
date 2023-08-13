@@ -4,7 +4,7 @@
   }
   .roadmap .main__container .left {
     -webkit-order: 2;
-    -order: 2;
+    order: 2;
   }
   .sessionsContainer {
     display: flex;
@@ -20,6 +20,10 @@
   .roadmap__area {
     width: auto;
   }
+  .task__container {
+    max-width: 768px;
+    margin: 0 auto 8px 70px !important;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -29,6 +33,13 @@
   .user__name {
     display: none;
   }
+  .flexCont {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .flexCont__data {
+    text-align: center;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -37,6 +48,16 @@
   }
   .classhead {
     font-size: 20px;
+  }
+  .codekata,
+  .webkata {
+    min-width: 250px;
+  }
+  .codekata .score,
+  .webkata .score {
+    font-size: 24px;
+    padding: 5px;
+    margin-bottom: 10px;
   }
 }
 
@@ -48,5 +69,9 @@
     height: 45px;
     width: 45px;
     font-size: 24px;
+  }
+  .modal-dialog {
+    max-width: 800px !important;
+    min-width: 360px !important;
   }
 }

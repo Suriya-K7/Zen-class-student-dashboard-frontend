@@ -1,74 +1,41 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import "./capstone.css";
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import { useContext } from 'react';
 import DataContext from '../../context/DataContext';
-import api from '../../api/api';
-import { ToastContainer, Zoom, toast } from "react-toastify";
+import { ToastContainer, Zoom } from "react-toastify";
 
 const Capstone = () => {
     const { loggedUser,
-        token,
-        setIsLoading,
+        head,
+        config,
+        frontEndCode,
+        setFrontEndCode,
+        frontEndURL,
+        setFrontEndURL,
+        backEndCode,
+        setBackEndCode,
+        backEndURL,
+        setBackEndURL,
+        trigger,
+        setTrigger,
+        capStone,
+        handleCapStone,
+        fetchCapStone,
         isLoading } = useContext(DataContext);
-    const [no, setNo] = useState(0);
-    const [capStone, setCapStone] = useState(null);
-    const config = {
-        headers: { authorization: `bearer ${token}` },
-    }
 
-    //
-    const [frontEndCode, setFrontEndCode] = useState("");
-    const [frontEndURL, setFrontEndURL] = useState("");
-    const [backEndCode, setBackEndCode] = useState("");
-    const [backEndURL, setBackEndURL] = useState("");
-
-    const fetchCapStone = async () => {
-        try {
-            const fetcheCapStone = await api.get("student/capstone", config);
-            if (fetcheCapStone) {
-                setCapStone(fetcheCapStone.data[0]);
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
     useEffect(() => {
         fetchCapStone();
-    }, [no, setNo])
+    }, [trigger, setTrigger])
 
-    const handleCapStone = async (e) => {
+    useEffect(() => {
+        setFrontEndCode("");
+        setFrontEndURL("");
+        setBackEndCode("");
+        setBackEndURL("");
+    }, [head])
 
-        e.preventDefault();
-
-        setIsLoading(true);
-
-        const newCapStone = {
-            feUrl: frontEndURL,
-            feCode: frontEndCode,
-            beUrl: backEndURL,
-            beCode: backEndCode,
-        }
-
-        try {
-            const response = await api.post("student/capstone", newCapStone, config);
-            toast.success(response.data.message);
-            setFrontEndCode("");
-            setFrontEndURL("");
-            setBackEndCode("");
-            setBackEndURL("");
-            setNo((prev) => prev + 1);
-            setIsLoading(false);
-        } catch (error) {
-            if (error.response.data.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.log(error);
-            }
-            setIsLoading(false);
-        }
-    }
 
     return (
         <section className='task__submission'>

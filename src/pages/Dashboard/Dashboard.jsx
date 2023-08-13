@@ -1,29 +1,20 @@
 import React, { useState, useEffect, useContext } from 'react';
 import "./dashboard.css";
 import BarChart from '../../components/chart/BarChart';
-import { taskData } from '../../data';
-import { userDetails } from '../../data';
 import { Link } from 'react-router-dom';
 import DataContext from '../../context/DataContext';
-import api from '../../api/api';
 
 const Dashboard = () => {
 
-    const { loggedUser, token } = useContext(DataContext);
-    const [DBTask, setDBTask] = useState([]);
-    const config = {
-        headers: { authorization: `bearer ${token}` },
-    }
-    const fetchTask = async () => {
-        try {
-            const fetchedTask = await api.get("student/task", config);
-            if (fetchedTask) {
-                setDBTask(fetchedTask.data);
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    const { loggedUser,
+        fetchTask,
+        DBTask,
+        setDBTask,
+        webCode,
+        fetchWebcode,
+        capStone,
+        fetchCapStone, } = useContext(DataContext);
+
     const [chartData, setChartData] = useState(
         {
             labels: DBTask.map((data) => data.title),
@@ -35,9 +26,13 @@ const Dashboard = () => {
             }]
         }
     )
+
     useEffect(() => {
         fetchTask();
+        fetchWebcode();
+        fetchCapStone();
     }, []);
+
     useEffect(() => {
         setChartData(
             {
@@ -51,8 +46,6 @@ const Dashboard = () => {
             }
         )
     }, [DBTask, setDBTask])
-
-    console.log(DBTask);
 
     return (
         <section className='dashboard pt-2'>
@@ -81,8 +74,10 @@ const Dashboard = () => {
                     <div className="codekata">
                         <div className="head">Webcode-1 Score</div>
                         <div className="score text-center">
-                            {userDetails.webcode.score !== "" ?
-                                userDetails.webcode.score : "Not yet Graded"
+                            {
+                                webCode ?
+                                    webCode.score :
+                                    "Not assigned"
                             }
                         </div>
                         <div className='text-center mb-2'>
@@ -94,8 +89,10 @@ const Dashboard = () => {
                     <div className="webkata">
                         <div className="head ">Capstone-1 Score</div>
                         <div className="score text-center">
-                            {userDetails.capstone.score !== "" ?
-                                userDetails.capstone.score : "Not yet Graded"
+                            {
+                                capStone ?
+                                    capStone.score :
+                                    "Not assigned"
                             }
                         </div>
                         <div className='text-center mb-2'>
