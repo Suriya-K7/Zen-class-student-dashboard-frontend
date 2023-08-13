@@ -7,38 +7,34 @@ import { ToastContainer, Zoom, toast } from "react-toastify";
 
 const Queries = () => {
     const { token } = useContext(DataContext);
-    const [comment, setComment] = useState("");
     const [queryTitle, setQueryTitle] = useState("");
     const [queryDesc, setQueryDesc] = useState("");
-    const [reason, setReason] = useState("");
-    const [appliedOn, setAppliedOn] = useState("");
-    const [leave, setLeave] = useState();
+    const [query, setQuery] = useState([]);
     const [clicked, setClicked] = useState(0);
     const config = {
         headers: { authorization: `bearer ${token}` },
     }
 
-    const fetchLeave = async () => {
+    const fetchQuery = async () => {
         try {
-            const fetchedLeave = await api.get("student/leave", config);
-            if (fetchedLeave) {
-                setLeave(fetchedLeave.data);
+            const fetchedQuery = await api.get("student/query", config);
+            if (fetchedQuery) {
+                setQuery(fetchedQuery.data);
             }
         } catch (error) {
             console.log(error);
         }
     }
 
-    const handleAddLeave = async () => {
-        console.log("clicked");
-        /*
+    const handleAddQuery = async () => {
+
         const data = {
-            reason, appliedOn
+            queryTitle, queryDesc
         }
         try {
-            const response = await api.post("student/leave", data, config);
-            setReason("");
-            setAppliedOn("");
+            const response = await api.post("student/query", data, config);
+            setQueryTitle("");
+            setQueryDesc("");
             toast.success(response.data.message);
             setClicked((prev) => prev + 1);
         } catch (error) {
@@ -48,12 +44,11 @@ const Queries = () => {
                 console.log(error);
             }
         }
-        */
     }
 
-    const handleLeaveCancel = async (data) => {
+    const handleQueryCancel = async (data) => {
         try {
-            const response = await api.delete(`student/leave/${data}`, config);
+            const response = await api.delete(`student/query/${data}`, config);
             toast.success(response.data.message);
             setClicked((prev) => prev + 1);
         } catch (error) {
@@ -66,8 +61,9 @@ const Queries = () => {
     }
 
     useEffect(() => {
-        // fetchLeave();
+        fetchQuery();
     }, [clicked]);
+
     return (
         <section className='leave'>
             <div className="btn__container">
@@ -76,58 +72,41 @@ const Queries = () => {
                 </button>
             </div>
             <br />
-            {/* {
-                leave &&
-                leave.map((data) => {
-                    return (<div className="task__container" key={data._id} data-bs-toggle="modal" data-bs-target={`#leaveModal${data._id}`} >
-                        <div className="flexCont">
-                            <div>
-                                <div className="title weight-500">Reason</div>
-                                <div className="row d-flex align-items-center justify-content-evenly secondaryGreyTextColor">
-                                    <div className="mx-1">{data.reason}</div>
+            {
+                query &&
+                query.map((data) => {
+                    return (
+                        <div className="task__container" key={data._id} data-bs-toggle="modal" data-bs-target={`#${data._id}`} >
+                            <div className="d-flex flex-column gap-2 align-items-center">
+                                <div>
+                                    <div className="query__group">
+                                        <div className="title weight-500">Query Title:</div>
+                                        <div className="secondaryGreyTextColor">
+                                            {data.queryTitle}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className='d-flex flex-column align-items-center'>
-                                <div className="mx-1 secondaryGreyTextColor">Applied on {data.appliedOn}</div>
-                                <div className="ml-3 mr-1">
-                                    <div className="marktag mx-1 px-3 rounded">
-                                        Status : - {data.status}
+                                <div>
+                                    <div className="query__group">
+                                        <div className="title weight-500">Query Description:</div>
+                                        <div className="secondaryGreyTextColor">
+                                            {data.queryDesc}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='d-flex flex-column align-items-center'>
+                                    <div className="secondaryGreyTextColor">Applied on {data.appliedOn.slice(0, 10)}</div>
+                                    <div className="ml-3 mr-1">
+                                        <div className="marktag mx-1 px-3 rounded">
+                                            Status : - {data.status}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>)
+                    )
                 })
-            } */}
-
-            <div className="task__container" data-bs-toggle="modal" data-bs-target={`#leaveModal`} >
-                <div className="d-flex flex-column gap-2 align-items-center">
-                    <div>
-                        <div className="query__group">
-                            <div className="title weight-500">Query Title:</div>
-                            <div className="secondaryGreyTextColor">
-                                title
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div className="query__group">
-                            <div className="title weight-500">Query Description:</div>
-                            <div className="secondaryGreyTextColor">
-                                Description
-                            </div>
-                        </div>
-                    </div>
-                    <div className='d-flex flex-column align-items-center'>
-                        <div className="secondaryGreyTextColor">Applied on 75782782</div>
-                        <div className="ml-3 mr-1">
-                            <div className="marktag mx-1 px-3 rounded">
-                                Status : - dsdsvdsvsd
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
             <div className="modal" id="myModal">
                 <div className="modal-dialog">
                     <div className="modal-content">
@@ -167,7 +146,7 @@ const Queries = () => {
                                 </div>
                                 <div className="modal-footer text-center">
                                     <div className='text-center w-100'>
-                                        <button type="submit" onClick={handleAddLeave} className="btn submit__btn " data-bs-dismiss="modal"  >Create</button>
+                                        <button type="submit" onClick={handleAddQuery} className="btn submit__btn">Create</button>
                                     </div>
                                 </div>
                             </form>
@@ -176,45 +155,28 @@ const Queries = () => {
                     </div>
                 </div>
             </div>
-            <div className="modal" id={`leaveModal`} >
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h4 className="modal-title">Delete Query </h4>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div className="modal-body  d-flex flex-column gap-1">
-                            <div className="d-flex gap-3">
-                                <button className="btn btn-danger" data-bs-dismiss="modal">Confirm Delete</button>
-                                <button className="btn btn-info" data-bs-dismiss="modal">Cancel</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* {
-                leave && leave.map((data) => {
+            {
+                query && query.map((data) => {
                     return (
-                        <div className="modal" id={`leaveModal${data._id}`} key={data._id}>
+                        <div className="modal" id={data._id} >
                             <div className="modal-dialog">
                                 <div className="modal-content">
                                     <div className="modal-header">
-                                        <h4 className="modal-title">Confirm Leave Cancellation </h4>
+                                        <h4 className="modal-title">Delete Query - {data.queryTitle} </h4>
                                         <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                                     </div>
-                                    <div className="modal-body">
-                                        <button type="reset" className="btn submit__btn" data-bs-dismiss="modal" ref={id} onClick={() => handleLeaveCancel(data._id)
-                                        } >Confirm</button>
-                                        <button type="submit" className="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                                    <div className="modal-body  d-flex flex-column gap-1">
+                                        <div className="d-flex gap-3">
+                                            <button className="btn btn-danger" onClick={() => handleQueryCancel(data._id)} data-bs-dismiss="modal">Confirm Delete</button>
+                                            <button className="btn btn-info" data-bs-dismiss="modal">Cancel</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     )
                 })
-            } */}
-
+            }
             <ToastContainer
                 position="top-right"
                 autoClose={1000}

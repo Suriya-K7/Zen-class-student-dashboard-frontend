@@ -52,7 +52,7 @@ export const DataProvider = ({ children }) => {
         try {
             const response = await api.post("/student/login", userData);
             localStorage.setItem("loggedInUser", JSON.stringify(response.data));
-            setLoggedUser(response.data);
+            setLoggedUser(response.data.student);
             setToken(response.data.token);
             setPassword("");
             setEmail("");
@@ -67,6 +67,7 @@ export const DataProvider = ({ children }) => {
             setIsLoading(false);
         }
     };
+
     // handle signout
     const handleLogout = () => {
         setToken(null);
