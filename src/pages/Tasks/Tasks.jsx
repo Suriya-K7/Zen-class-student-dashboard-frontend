@@ -7,8 +7,8 @@ import api from '../../api/api';
 
 const Tasks = () => {
     const { loggedUser, token } = useContext(DataContext);
-    const name = loggedUser.name ? loggedUser.name : loggedUser.student.name;
-    const batch = loggedUser.batch ? loggedUser.batch : loggedUser.student.batch;
+    const name = loggedUser.name + " " + loggedUser.lName;
+    const batch = loggedUser.batch;
     const [DBTask, setDBTask] = useState([]);
     const config = {
         headers: { authorization: `bearer ${token}` },

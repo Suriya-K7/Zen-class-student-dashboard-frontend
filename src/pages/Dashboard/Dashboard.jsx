@@ -1,22 +1,74 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import "./dashboard.css";
 import BarChart from '../../components/chart/BarChart';
 import { taskData } from '../../data';
 import { userDetails } from '../../data';
 import { Link } from 'react-router-dom';
+import DataContext from '../../context/DataContext';
+import api from '../../api/api';
 
 const Dashboard = () => {
+
+    const { loggedUser, token } = useContext(DataContext);
+    const name = loggedUser.name + " " + loggedUser.lName;
+    const batch = loggedUser.batch;
+    const [DBTask, setDBTask] = useState([]);
+    const config = {
+        headers: { authorization: `bearer ${token}` },
+    }
+    const fetchTask = async () => {
+        try {
+            const fetchedTask = await api.get("student/task", config);
+            if (fetchedTask) {
+                setDBTask(fetchedTask.data);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
     const [chartData, setChartData] = useState(
         {
-            labels: taskData.map((data) => data.task).slice(1),
+            labels: DBTask.map((data) => data.title),
             datasets: [{
                 label: "Task Score",
-                data: taskData.map((data) => data.score).slice(1),
+                data: DBTask.map((data) => data.score),
                 backgroundColor: "#4b0dba",
                 borderJoinStyle: "round"
             }]
         }
     )
+    useEffect(() => {
+        fetchTask();
+    }, []);
+    useEffect(() => {
+        setChartData(
+            {
+                labels: DBTask.map((data) => `Day-${data.day}`),
+                datasets: [{
+                    label: "Task Score",
+                    data: DBTask.map((data) => data.score),
+                    backgroundColor: "#4b0dba",
+                    borderJoinStyle: "round"
+                }]
+            }
+        )
+    }, [DBTask, setDBTask])
+
+    console.log(DBTask);
+
+    // const [chartData, setChartData] = useState(
+    //     {
+    //         labels: taskData.map((data) => data.task).slice(1),
+    //         datasets: [{
+    //             label: "Task Score",
+    //             data: taskData.map((data) => data.score).slice(1),
+    //             backgroundColor: "#4b0dba",
+    //             borderJoinStyle: "round"
+    //         }]
+    //     }
+    // )
+
+
     return (
         <section className='dashboard pt-2'>
             <div className='activities__box container'>
