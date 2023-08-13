@@ -29,6 +29,7 @@
 .nav__header .user,
 .nav__title {
   opacity: 0;
+  white-space: nowrap;
   transition: 0.3s;
 }
 .navbar__side:hover .nav__header {

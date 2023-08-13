@@ -620,6 +620,187 @@ export const roadMap = [
 
 
 ];
+export const roadMapRes = [
+    {
+        no: 1,
+        dir: "step__right"
+    },
+    {
+        no: 2,
+        dir: "step__right"
+    },
+    {
+        no: 3,
+        dir: "step__right"
+    },
+    {
+        no: 4,
+        dir: "step__right"
+    },
+    {
+        no: 5,
+        dir: "step__bottom"
+    },
+    {
+        no: 6,
+        dir: "step__bottom"
+    },
+    {
+        no: 7,
+        dir: "step__left"
+    },
+    {
+        no: 8,
+        dir: "step__left"
+    },
+    {
+        no: 9,
+        dir: "step__left"
+    },
+    {
+        no: 10,
+        dir: "step__left"
+    },
+    {
+        no: 11,
+        dir: "step__right"
+    },
+    {
+        no: 12,
+        dir: "step__right"
+    },
+    {
+        no: 13,
+        dir: "step__right"
+    },
+    {
+        no: 14,
+        dir: "step__right"
+    },
+    {
+        no: 15,
+        dir: "step__bottom"
+    },
+    {
+        no: 16,
+        dir: "step__bottom"
+    },
+    {
+        no: 17,
+        dir: "step__left"
+    },
+    {
+        no: 18,
+        dir: "step__left"
+    },
+    {
+        no: 19,
+        dir: "step__left"
+    },
+    {
+        no: 20,
+        dir: "step__left"
+    },
+    {
+        no: 21,
+        dir: "step__right"
+    },
+    {
+        no: 22,
+        dir: "step__right"
+    },
+    {
+        no: 23,
+        dir: "step__right"
+    },
+    {
+        no: 24,
+        dir: "step__right"
+    },
+    {
+        no: 25,
+        dir: "step__bottom"
+    },
+    {
+        no: 26,
+        dir: "step__bottom"
+    },
+    {
+        no: 27,
+        dir: "step__left"
+    },
+    {
+        no: 28,
+        dir: "step__left"
+    },
+    {
+        no: 29,
+        dir: "step__left"
+    },
+    {
+        no: 30,
+        dir: "step__left"
+    },
+    {
+        no: 31,
+        dir: "step__right"
+    },
+    {
+        no: 32,
+        dir: "step__right"
+    },
+    {
+        no: 33,
+        dir: "step__right"
+    },
+    {
+        no: 34,
+        dir: "step__right"
+    },
+    {
+        no: 35,
+        dir: "step__bottom"
+    },
+    {
+        no: 36,
+        dir: "step__bottom"
+    },
+    {
+        no: 37,
+        dir: "step__left"
+    },
+    {
+        no: 38,
+        dir: "step__left"
+    },
+    {
+        no: 39,
+        dir: "step__left"
+    },
+    {
+        no: 40,
+        dir: "step__left"
+    },
+    {
+        no: 41,
+        dir: "step__right"
+    },
+    {
+        no: 42,
+        dir: "step__right"
+    },
+    {
+        no: 43,
+        dir: "step__right"
+    },
+    {
+        no: 44,
+        dir: ""
+    },
+
+
+
+];
 export const roadMapData = [
     {
         day: 0,

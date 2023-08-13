@@ -146,11 +146,11 @@ const Queries = () => {
                                 </div>
                                 <div className="modal-footer text-center">
                                     <div className='text-center w-100'>
-                                        <button type="submit" onClick={handleAddQuery} className="btn submit__btn">Create</button>
+                                        <button type="submit" onClick={handleAddQuery} className="btn submit__btn w-100">Create</button>
                                     </div>
                                 </div>
                             </form>
-                            <button className="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                            <button className="btn btn-danger w-25" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
@@ -158,7 +158,7 @@ const Queries = () => {
             {
                 query && query.map((data) => {
                     return (
-                        <div className="modal" id={data._id} >
+                        <div className="modal" key={data._id} id={data._id} >
                             <div className="modal-dialog">
                                 <div className="modal-content">
                                     <div className="modal-header">
@@ -176,6 +176,11 @@ const Queries = () => {
                         </div>
                     )
                 })
+            }
+            {
+                !query.length
+                &&
+                <h3 className='text-center mt-3'>No Querries raised</h3>
             }
             <ToastContainer
                 position="top-right"

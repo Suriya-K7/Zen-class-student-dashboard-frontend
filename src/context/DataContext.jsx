@@ -2,11 +2,13 @@ import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api/api";
 import { toast } from "react-toastify";
+import useWindowSize from "../hooks/useWindowSize";
 
 const DataContext = createContext({});
 
 export const DataProvider = ({ children }) => {
     // code and functions
+    const { width } = useWindowSize();
     const [head, setHead] = useState("Class");
     const [loggedUser, setLoggedUser] = useState("");
     const [token, setToken] = useState("");
@@ -223,7 +225,8 @@ export const DataProvider = ({ children }) => {
                 handleForgot,
                 handleReset,
                 isLoading,
-                setIsLoading
+                setIsLoading,
+                width
             }}
         >
             {children}

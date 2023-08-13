@@ -1,15 +1,52 @@
-/* :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@media screen and (max-width: 992px) {
+  .roadmap .main__container {
+    flex-direction: column;
+  }
+  .roadmap .main__container .left {
+    -webkit-order: 2;
+    -order: 2;
+  }
+  .sessionsContainer {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .step__left,
+  .step__right {
+    display: none;
+  }
+  .step__bottom {
+    display: none;
+  }
+  .roadmap__area {
+    width: auto;
+  }
+}
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+@media screen and (max-width: 768px) {
+  .top__header .heading {
+    font-size: 36px;
+  }
+  .user__name {
+    display: none;
+  }
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-} */
+@media screen and (max-width: 600px) {
+  .top__header .heading {
+    font-size: 24px;
+  }
+  .classhead {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .top__header .heading {
+    font-size: 20px;
+  }
+  .user__logo {
+    height: 45px;
+    width: 45px;
+    font-size: 24px;
+  }
+}

@@ -132,6 +132,7 @@ h6 {
   width: 90%;
   font-size: 14px;
   font-weight: 500;
+  word-wrap: break-word;
   color: var(--secondary);
 }
 .task__toggle {

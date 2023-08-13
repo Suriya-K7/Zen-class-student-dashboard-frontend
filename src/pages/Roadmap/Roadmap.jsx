@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import "./roadmap.css";
-import { roadMap, roadMapData } from '../../data';
+import { roadMap, roadMapData, roadMapRes } from '../../data';
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
 import DataContext from '../../context/DataContext';
 import api from '../../api/api';
 import { ToastContainer, Zoom, toast } from "react-toastify";
+import { FaGooglePlay } from 'react-icons/fa';
 
 
 const Roadmap = () => {
-    const { loggedUser, token, setIsLoading, isLoading } = useContext(DataContext);
+    const { loggedUser, token, setIsLoading, isLoading, width } = useContext(DataContext);
     const [day, setDay] = useState(0);
     const [data, setData] = useState(roadMapData[0]);
     const [flag, setFlag] = useState(true);
@@ -75,7 +76,7 @@ const Roadmap = () => {
 
     return (
         <section className='roadmap'>
-            <div className='p-2 d-flex justify-content-between gap-3'>
+            <div className='main__container p-2 d-flex justify-content-between gap-3'>
                 <div className="left">
                     <div className="class__head d-flex px-3 
                     justify-content-between align-items-center" >
@@ -92,7 +93,7 @@ const Roadmap = () => {
                                     className="play__btn"
                                     data-bs-toggle="modal"
                                     data-bs-target="#myModal">
-                                    Play Recordings
+                                    <FaGooglePlay />
                                 </button>
                             </>
                         }
@@ -302,14 +303,23 @@ const Roadmap = () => {
                             </div>
                             <div className="sessionsContainer">
                                 {
-                                    roadMap.map((item) => {
-                                        return (
-                                            <div key={item.no} className="roadmap_icon_container completed" onClick={() => setDay(Number(item.no))}>
-                                                <h6>{item.no}</h6>
-                                                <div className={item.dir}></div>
-                                            </div>
-                                        )
-                                    })
+                                    width >= 992 ?
+                                        roadMap.map((item) => {
+                                            return (
+                                                <div key={item.no} className="roadmap_icon_container completed" onClick={() => setDay(Number(item.no))}>
+                                                    <h6>{item.no}</h6>
+                                                    <div className={item.dir}></div>
+                                                </div>
+                                            )
+                                        }) :
+                                        roadMapRes.map((item) => {
+                                            return (
+                                                <div key={item.no} className="roadmap_icon_container completed" onClick={() => setDay(Number(item.no))}>
+                                                    <h6>{item.no}</h6>
+                                                    <div className={item.dir}></div>
+                                                </div>
+                                            )
+                                        })
                                 }
                             </div>
                         </div>

@@ -8,13 +8,12 @@
   border-bottom: 1.5px solid #dedede;
   user-select: none;
   background-color: #fff;
-  /* z-index: 50; */
 }
 .top__header .heading {
   font-style: normal;
   font-weight: 500;
   color: #000;
-  margin-left: 70px;
+  margin-left: 60px;
   font-size: 40px;
 }
 .user__profile {
@@ -29,4 +28,12 @@
 }
 .dropdown-item:hover {
   background-color: #e9ecef !important;
+}
+.user__logo {
+  height: 60px;
+  width: 60px;
+  background-color: var(--theme);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 28px;
 }
