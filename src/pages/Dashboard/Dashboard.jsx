@@ -10,8 +10,6 @@ import api from '../../api/api';
 const Dashboard = () => {
 
     const { loggedUser, token } = useContext(DataContext);
-    const name = loggedUser.name + " " + loggedUser.lName;
-    const batch = loggedUser.batch;
     const [DBTask, setDBTask] = useState([]);
     const config = {
         headers: { authorization: `bearer ${token}` },
@@ -56,19 +54,6 @@ const Dashboard = () => {
 
     console.log(DBTask);
 
-    // const [chartData, setChartData] = useState(
-    //     {
-    //         labels: taskData.map((data) => data.task).slice(1),
-    //         datasets: [{
-    //             label: "Task Score",
-    //             data: taskData.map((data) => data.score).slice(1),
-    //             backgroundColor: "#4b0dba",
-    //             borderJoinStyle: "round"
-    //         }]
-    //     }
-    // )
-
-
     return (
         <section className='dashboard pt-2'>
             <div className='activities__box container'>
@@ -76,11 +61,11 @@ const Dashboard = () => {
                 <div className='problem__solved gap-5'>
                     <div className="codekata">
                         <div className="head">CodeKata Problem Solved</div>
-                        <div className="score text-center">{userDetails.codeKata}</div>
+                        <div className="score text-center">{loggedUser.codeKata}</div>
                     </div>
                     <div className="webkata">
                         <div className="head ">WebKata Problem Solved</div>
-                        <div className="score text-center">{userDetails.webKata}</div>
+                        <div className="score text-center">{loggedUser.webKata}</div>
                     </div>
                 </div>
             </div>
@@ -121,7 +106,7 @@ const Dashboard = () => {
                     </div>
                     <div className="webkata">
                         <div className="head ">Mock Interview Avg</div>
-                        <div className="score text-center">{userDetails.mockInterview / 2}</div>
+                        <div className="score text-center">{loggedUser.mockInterview}</div>
                         <div className='text-center mb-2'>
                             <Link to="/mock" className='view__btn'>
                                 View
