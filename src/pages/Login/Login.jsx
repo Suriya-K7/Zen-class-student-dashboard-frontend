@@ -4,6 +4,7 @@ import LOGO from "../../assets/logo.png";
 import BANNER from "../../assets/banner.png";
 import { Link } from 'react-router-dom';
 import DataContext from '../../context/DataContext';
+import { ToastContainer, Zoom } from "react-toastify";
 
 const Login = () => {
     const { email, setEmail, password, setPassword, handleSignIn, isLoading } = useContext(DataContext);
@@ -61,6 +62,19 @@ const Login = () => {
                     <img src={BANNER} className="banner" alt=".." />
                 </div>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={1000}
+                transition={Zoom}
+                draggable={false}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                pauseOnHover
+                theme="dark"
+            />
         </div>
     )
 }
