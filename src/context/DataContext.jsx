@@ -79,15 +79,12 @@ export const DataProvider = ({ children }) => {
                 console.log(error))
     }, []);
 
-    const handleSignIn = async (e) => {
-        e.preventDefault();
+    const handleSignIn = async (data) => {
+
         setIsLoading(true);
-        const userData = {
-            email: email,
-            password: password,
-        };
+
         try {
-            const response = await api.post("/student/login", userData);
+            const response = await api.post("/student/login", data);
             localStorage.setItem("loggedInUser", JSON.stringify(response.data));
             setLoggedUser(response.data.student);
             setToken(response.data.token);
@@ -96,8 +93,6 @@ export const DataProvider = ({ children }) => {
                     authorization: `bearer ${response.data.token}`,
                 },
             })
-            setPassword("");
-            setEmail("");
             setIsLoading(false);
             navigate("/class");
         } catch (error) {
@@ -120,41 +115,32 @@ export const DataProvider = ({ children }) => {
     };
 
     // handle sign up
-    const handleSignUp = async (e) => {
-        e.preventDefault();
-        const userData = {
-            email,
-            name,
-            lName,
-            qualification,
-            experience,
-            password,
-            contactNo,
-        };
-        if (password === cPassword) {
-            try {
-                await api.post("/student/signup", userData);
-                setEmail("");
-                setName("");
-                setlName("");
-                setQualification("");
-                setExperience("");
-                setPassword("");
-                setcPassword("");
-                setContactNo("");
+    const handleSignUp = async (data) => {
+
+        setIsLoading(true);
+
+        try {
+            await api.post("/student/signup", data);
+            toast.success("Register successfully, Kindly check Your Email");
+            setIsLoading(false);
+            setTimeout(() => {
                 navigate("/");
-            } catch (error) {
-                toast.error(error.response.data.message);
-                // console.log(error.response.data.message);
+            }, 2000);
+        } catch (error) {
+            if (error.response.data.message) {
+                toast.error(error.response.data.message)
+            } else {
+                console.log(error);
             }
-        } else {
-            toast.error("password mismatch");
-            // alert("password mismatch");
+            setIsLoading(false);
         }
     };
 
-    // handle sign up
+    // handle profile update
     const handleProfileUpdate = async (e) => {
+
+        setIsLoading(true);
+
         e.preventDefault();
         const userData = {
             email,
@@ -176,56 +162,84 @@ export const DataProvider = ({ children }) => {
                 setExperience("");
                 setPassword("");
                 setcPassword("");
+                setIsLoading(false);
             } catch (error) {
                 toast.error(error.response.data.message);
+                setIsLoading(false);
                 // console.log(error.response.data.message);
             }
         } else {
             toast.error("password mismatch");
+            setIsLoading(false);
             // alert("password mismatch")
         }
     };
 
     // handle account confirming
     const handleConfirm = (e) => {
+
+        setIsLoading(true);
+
         e.preventDefault();
         try {
             api.patch(`/student/confirm/${resetToken}`);
-            navigate("/");
-            // toast("Account confirmed Successfully");
+            toast.success("Account confirmed Successfully");
+            setIsLoading(false);
+            setTimeout(() => {
+                navigate("/");
+            }, 2000);
         } catch (error) {
-            console.error(error.response.data.message);
+            if (error.response.data.message) {
+                toast.error(error.response.data.message)
+            } else {
+                console.log(error);
+            }
+            setIsLoading(false);
         }
     };
 
     // handle forgot password
-    const handleForgot = async (e) => {
-        e.preventDefault();
+    const handleForgot = async (data) => {
+
+        setIsLoading(true);
+
         try {
-            await api.put("/student/forgot", { email: email });
+            await api.put("/student/forgot", data);
             toast.success("Reset link send to your mail");
+            setIsLoading(false);
             setTimeout(() => {
-                setEmail("");
                 navigate("/");
             }, 2000);
         } catch (error) {
-            toast.error(error.response.data.message);
-            // console.log(error);
+            if (error.response.data.message) {
+                toast.error(error.response.data.message)
+            } else {
+                console.log(error);
+            }
+            setIsLoading(false);
         }
     };
 
     // handle password reset
-    const handleReset = async (e) => {
-        e.preventDefault();
-        if (password === cPassword) {
-            api.patch(`/student/reset/${resetToken}`, { password: password });
+    const handleReset = async (data) => {
+
+        setIsLoading(true);
+
+        try {
+            const response = await api.patch(`/student/reset/${resetToken}`, data);
             setResetToken("");
-            setPassword("");
-            setcPassword("");
-            navigate("/");
-            toast("Password Changed Successfully");
-        } else {
-            alert("password not matching");
+            toast.success(response.data.message);
+            setIsLoading(false);
+            setTimeout(() => {
+                navigate("/");
+            }, 2000);
+        } catch (error) {
+            if (error.response.data.message) {
+                toast.error(error.response.data.message)
+            } else {
+                console.log(error);
+            }
+            setIsLoading(false);
         }
     };
 

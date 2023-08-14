@@ -61,3 +61,12 @@ a {
 .secondaryTheme {
   color: var(--secondary);
 }
+.form-group {
+  position: relative;
+}
+.errorMessage {
+  position: absolute;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgb(145, 3, 3);
+}

@@ -9,6 +9,8 @@
   .sessionsContainer {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    padding: 16px;
   }
   .step__left,
   .step__right {
@@ -27,6 +29,9 @@
   .leave .task__container,
   .mock .task__container {
     margin: 0 auto 8px !important;
+  }
+  .progress__head {
+    text-align: center;
   }
 }
 
@@ -65,6 +70,9 @@
     font-size: 24px;
     padding: 5px;
     margin-bottom: 10px;
+  }
+  .sessionsContainer {
+    gap: 16px;
   }
 }
 
