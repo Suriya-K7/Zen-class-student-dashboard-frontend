@@ -5,7 +5,7 @@ import { leaderBoardData } from '../../data';
 const Leaderboard = () => {
     return (
         <section className='leaderboard'>
-            <div className="leader__leaderboard py-4 text-center"><h2 >Competition is a good thing; it forces us to do our best.</h2></div>
+            <div className="leader__leaderboard p-3  text-center"><h2>Competition is a good thing; it forces us to do our best.</h2></div>
             <div className="leader__leaderboard__table">
                 <table >
                     <thead>

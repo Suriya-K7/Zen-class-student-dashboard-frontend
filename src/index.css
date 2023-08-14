@@ -24,6 +24,10 @@
     max-width: 768px;
     margin: 0 auto 8px 70px !important;
   }
+  .leave .task__container,
+  .mock .task__container {
+    margin: 0 auto 8px !important;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -39,6 +43,9 @@
   }
   .flexCont__data {
     text-align: center;
+  }
+  .leader__leaderboard h2 {
+    font-size: 24px;
   }
 }
 
@@ -73,5 +80,8 @@
   .modal-dialog {
     max-width: 800px !important;
     min-width: 360px !important;
+  }
+  .task__container {
+    padding: 15px;
   }
 }

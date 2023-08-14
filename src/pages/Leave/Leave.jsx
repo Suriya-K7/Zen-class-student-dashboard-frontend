@@ -39,7 +39,7 @@ const Leave = () => {
                         data-bs-toggle="modal"
                         data-bs-target={`#leaveModal${data._id}`} >
                         <div className="flexCont">
-                            <div>
+                            <div className='text-center'>
                                 <div className="title weight-500">Reason</div>
                                 <div className="row d-flex align-items-center justify-content-evenly secondaryGreyTextColor">
                                     <div className="mx-1">{data.reason}</div>

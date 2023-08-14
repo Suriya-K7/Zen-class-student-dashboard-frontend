@@ -33,8 +33,8 @@ const Webcode = () => {
         <section className='task__submission'>
             <div className="task__container mt-5"
                 data-bs-toggle="modal" data-bs-target="#myModal">
-                <div className="d-flex justify-content-between">
-                    <div>
+                <div className="d-flex justify-content-between flexCont ">
+                    <div className="flexCont__data">
                         <div className="title weight-500 pb-2">
                             {loggedUser.name ? loggedUser.name : loggedUser.student.name}
                             {loggedUser.lName ? loggedUser.lName : loggedUser.student.lName}
@@ -53,13 +53,12 @@ const Webcode = () => {
                                 `submitted on ${webCode.submittedOn.slice(0, 10)}` : "Not Submitted"
                             }
                         </div>
-                        <div className="ml-3 mr-1 d-flex align-self-end justify-content-end">
-                            <div className="marktag mx-1 px-3 rounded">
+                        <div className="ml-3 mr-1">
+                            <div className="marktag tasktag mx-1 px-3 rounded">
                                 {webCode ?
-                                    `score : - ${webCode.score}` : "Pending"
+                                    `Webcode score : - ${webCode.score}` : "Pending"
                                 }
                             </div>
-                            <div className="tasktag px-2 rounded">Webcode</div>
                         </div>
                     </div>
                 </div>
@@ -90,12 +89,11 @@ const Webcode = () => {
                                     Title:- Make Up API
                                 </div>
                                 <div className="d-flex align-items-center justify-content-between">
-                                    <div className="marktag  rounded">
+                                    <div className="marktag tasktag rounded">
                                         {webCode ?
                                             `score : - ${webCode.score}` : "Pending"
                                         }
                                     </div>
-                                    <div className="tasktag px-2 rounded">WebCode</div>
                                 </div>
                                 <div className="secondaryGreyTextColor">
                                     {webCode ?

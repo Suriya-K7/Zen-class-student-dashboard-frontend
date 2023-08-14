@@ -17,21 +17,18 @@ const Mock = () => {
                 mock.map((data) => {
                     return (<div className="task__container" key={data._id} data-bs-toggle="modal" data-bs-target={`#${data._id}`}  >
                         <div className="flexCont">
-                            <div>
+                            <div className="text-center text-md-start">
                                 <div className="title weight-500">{data.interviewRound}</div>
-                                <div className="row d-flex align-items-center justify-content-evenly secondaryGreyTextColor">
-                                    <div className="mx-1">{loggedUser.name} {loggedUser.lName}</div>
+                                <div className="secondaryGreyTextColor">
+                                    <div>{loggedUser.name} {loggedUser.lName}</div>
                                 </div>
                             </div>
                             <div>
-                                <div className="mx-1 secondaryGreyTextColor">Taken By {data.interviewerName}</div>
-                                <div className="ml-3 mr-1 d-flex align-self-end justify-content-end">
-                                    <div className="marktag mx-1 px-3 rounded">
-                                        Score : -
+                                <div className="secondaryGreyTextColor text-center">Taken By {data.interviewerName}</div>
+                                <div className="ml-3 mr-1">
+                                    <div className="marktag tasktag mx-1 px-3 rounded">
+                                        Score : - {data.overallScore}
                                     </div>
-                                    <div className="tasktag px-2 rounded">{
-                                        data.overallScore
-                                    }</div>
                                 </div>
                             </div>
                         </div>

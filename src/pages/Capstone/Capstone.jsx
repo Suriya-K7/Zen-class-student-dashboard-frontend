@@ -40,10 +40,10 @@ const Capstone = () => {
     return (
         <section className='task__submission'>
             <div className="task__container mt-5" data-bs-toggle="modal" data-bs-target="#myModal">
-                <div className="d-flex justify-content-between">
-                    <div>
+                <div className="d-flex justify-content-between flexCont">
+                    <div className="flexCont__data">
                         <div className="title weight-500 pb-2">
-                            {loggedUser.name ? loggedUser.name : loggedUser.student.name}
+                            {loggedUser.name ? loggedUser.name : loggedUser.student.name} {" "}
                             {loggedUser.lName ? loggedUser.lName : loggedUser.student.lName}
                         </div>
                         <div className="row d-flex align-items-center justify-content-evenly secondaryGreyTextColor">
@@ -59,13 +59,12 @@ const Capstone = () => {
                                 `submitted on ${capStone.submittedOn.slice(0, 10)}` : "Not Submitted"
                             }
                         </div>
-                        <div className="ml-3 mr-1 d-flex align-self-end justify-content-end">
-                            <div className="marktag mx-1 px-3 rounded">
+                        <div className="ml-3 mr-1">
+                            <div className="marktag tasktag mx-1 px-3 rounded">
                                 {capStone ?
-                                    `score : - ${capStone.score}` : "Pending"
+                                    `Capstone score : - ${capStone.score}` : "Pending"
                                 }
                             </div>
-                            <div className="tasktag px-2 rounded">Capstone</div>
                         </div>
                     </div>
                 </div>
@@ -88,12 +87,11 @@ const Capstone = () => {
                                 </div>
                                 <div className="secondaryGreyTextColor">Task Title:- Zen Class Student Dashboard</div>
                                 <div className="d-flex align-items-center justify-content-between">
-                                    <div className="marktag  rounded">
+                                    <div className="marktag tasktag rounded">
                                         {capStone ?
                                             `score : - ${capStone.score}` : "Pending"
                                         }
                                     </div>
-                                    <div className="tasktag px-2 rounded">Capstone</div>
                                 </div>
                                 <div className="secondaryGreyTextColor">
                                     {capStone ?

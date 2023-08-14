@@ -7,7 +7,7 @@
 }
 .leader__leaderboard__table {
   width: 95%;
-  margin-left: 30px;
+  margin: 0 auto;
 }
 .topper {
   background-color: var(--theme);

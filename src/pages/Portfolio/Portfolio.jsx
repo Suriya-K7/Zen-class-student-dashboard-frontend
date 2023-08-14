@@ -27,7 +27,7 @@ const Portfolio = () => {
     return (
         <section className='portfolio'>
             <div className="row mx-0">
-                <div className="col-sm-12 col-md-4 portfolio__area">
+                <div className="col-sm-12 col-md-6 portfolio__area">
                     <form className="d-flex justify-content-center flex-column mt-2" onSubmit={handlePortfolio}>
                         <div className="row">
                             <div className="col-12">
@@ -77,7 +77,7 @@ const Portfolio = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="d-flex px-4">
+                        <div className="d-flex justify-content-center align-items-center">
                             <button className="btn button" type="submit">
                                 {
                                     isLoading ?
@@ -93,12 +93,12 @@ const Portfolio = () => {
                         <b> Review</b> or <b> Reviewed</b>.
                     </p>
                 </div>
-                <div className=" col-sm-12 col-md-8 review__area text-center">
+                <div className=" col-sm-12 col-md-6 review__area text-center">
                     <div className="border-bottom text-center">
                         <h3 className='review__header'>Portfolio Review</h3>
                     </div>
                     <div className="row secondaryGreyTextColor">
-                        <div className="col-6">
+                        <div className="col-12 col-sm-6">
                             <div className="port_item my-4 d-flex flex-column">
                                 <span className="port_grey">Status:</span>
                                 <span>{portfolio ? `${portfolio.status}` : "Not Submitted"}</span>
@@ -108,7 +108,7 @@ const Portfolio = () => {
                                 <span>{portfolio ? `${portfolio.comment}` : "Not Submitted"}</span>
                             </div>
                         </div>
-                        <div className="col-6">
+                        <div className="col-12 col-sm-6">
                             <div className="port_item my-4 d-flex flex-column">
                                 <span className="port_grey">Date:</span>
                                 <span>{portfolio ? `${portfolio.submittedOn.slice(0, 10)}` : "Not Submitted"}</span>
