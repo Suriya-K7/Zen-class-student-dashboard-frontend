@@ -79,7 +79,7 @@ const Capstone = () => {
                         <div className="mt-2">
                             <div className="px-4 d-flex flex-column gap-1">
                                 <div className="title ">
-                                    {loggedUser.name ? loggedUser.name : loggedUser.student.name}
+                                    {loggedUser.name ? loggedUser.name : loggedUser.student.name} {" "}
                                     {loggedUser.lName ? loggedUser.lName : loggedUser.student.lName}
                                 </div>
                                 <div className="secondaryGreyTextColor">

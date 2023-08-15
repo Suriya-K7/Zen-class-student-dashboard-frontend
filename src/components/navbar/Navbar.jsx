@@ -7,7 +7,7 @@ import DataContext from '../../context/DataContext';
 
 
 const Navbar = () => {
-    const { setHead } = useContext(DataContext);
+    const { setHead, handleHead } = useContext(DataContext);
     return (
         <nav className='navbar__side'>
             <div className='nav__header d-flex align-items-center gap-2'>
@@ -18,7 +18,7 @@ const Navbar = () => {
                 {
                     navBarLink.map((nav) => {
                         return (
-                            <li key={nav.id} onClick={() => setHead(nav.name)}>
+                            <li key={nav.id} onClick={() => handleHead(nav.name)}>
                                 <NavLink to={nav.link} className={({ isActive }) =>
                                     isActive ? "nav__item nav-active" : "nav__item text-secondary"
                                 }>

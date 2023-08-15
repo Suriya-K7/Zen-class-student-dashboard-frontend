@@ -12,24 +12,6 @@ const Profile = () => {
         handleProfileUpdate,
         loggedUser,
         isLoading,
-        password,
-        setPassword,
-        cPassword,
-        setcPassword,
-        name,
-        setName,
-        lName,
-        setlName,
-        qualification,
-        setQualification,
-        experience,
-        setExperience,
-        contactNo,
-        setContactNo,
-        email,
-        setEmail,
-        Batch,
-        setBatch,
     } = useContext(DataContext);
 
     const validate = Yup.object({
@@ -95,20 +77,75 @@ const Profile = () => {
                                     <h3 style={{ color: "var(--theme" }}>
                                         Profile Details :
                                     </h3>
-                                    <TextField label="First Name" name="name" id="name" type="text" />
-                                    <TextField label="Last Name" name="lName" id="lName" type="text" />
-                                    <TextField label="Email" name="email" id="email" type="email" disabled />
-                                    <TextField label="Contact No" name="contactNo" id="contactNo" type="text" />
-                                    <TextField label="Batch" name="batch" id="batch" type="text" disabled />
-                                    <TextField label="Experience" name="experience" id="experience" type="text" />
-                                    <TextField label="Qualification" name="qualification" id="qualification" type="text" />
-                                    <TextField label="Password" name="password" id="password" type="password" />
-                                    <TextField label="Confirm Password" name="cPassword" id="cPassword" type="password" />
-                                    <div className="text-center mt-3"><button className="submit__capstone" type="submit">
-                                        {
-                                            isLoading ? (<span className="spinner-border spinner-border-sm text-warning"></span>) : "Update"
-                                        }
-                                    </button>
+                                    <TextField
+                                        label="First Name"
+                                        name="name"
+                                        id="name"
+                                        type="text"
+                                        placeholder="Enter First Name"
+                                    />
+                                    <TextField
+                                        label="Last Name"
+                                        name="lName"
+                                        id="lName"
+                                        type="text"
+                                        placeholder="Enter Last Name"
+                                    />
+                                    <TextField
+                                        label="Email"
+                                        name="email"
+                                        id="email"
+                                        type="email"
+                                        disabled
+                                    />
+                                    <TextField
+                                        label="Contact No"
+                                        name="contactNo"
+                                        id="contactNo"
+                                        type="text"
+                                        placeholder="Enter Contact No."
+                                    />
+                                    <TextField
+                                        label="Batch"
+                                        name="batch"
+                                        id="batch"
+                                        type="text"
+                                        disabled
+                                    />
+                                    <TextField
+                                        label="Experience"
+                                        name="experience"
+                                        id="experience"
+                                        type="text"
+                                        placeholder="Enter Experience in Years"
+                                    />
+                                    <TextField
+                                        label="Qualification"
+                                        name="qualification"
+                                        id="qualification"
+                                        type="text"
+                                        placeholder="Enter Qualification"
+                                    />
+                                    <TextField
+                                        label="Password"
+                                        name="password"
+                                        id="password"
+                                        type="password"
+                                        placeholder="Enter Password"
+                                    />
+                                    <TextField
+                                        label="Confirm Password"
+                                        name="cPassword"
+                                        id="cPassword"
+                                        type="password"
+                                        placeholder="Confirm Password"
+                                    />
+                                    <div className="text-center mt-3">
+                                        <button className="submit__capstone" type="submit">
+                                            {
+                                                isLoading ? (<span className="spinner-border spinner-border-sm text-warning"></span>) : "Update"
+                                            }
+                                        </button>
                                     </div>
 
                                 </div>
@@ -116,133 +153,6 @@ const Profile = () => {
                         )
                     }
                 </Formik>
-                {/* <form onSubmit={handleProfileUpdate}>
-                    <div className="detailCards">
-                        <h3 style={{ color: "var(--theme" }}>
-                            Profile Details :
-                        </h3>
-                        <div className="personalDetails">
-                            <label htmlFor="fname" className="label__style mb-0">First Name</label>
-                            <div>
-                                <input
-                                    className="code__submission"
-                                    id='fname'
-                                    name="Fisrt Name"
-                                    placeholder={loggedUser.name}
-                                    type="text"
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            <label htmlFor="lname" className="label__style mb-0">Last Name</label>
-                            <div>
-                                <input
-                                    className="code__submission"
-                                    id='lname'
-                                    name="Last Name"
-                                    placeholder={loggedUser.lName}
-                                    type="text"
-                                    value={lName}
-                                    onChange={(e) => setlName(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            <label htmlFor="mobile" className="label__style mb-0">Contact No</label>
-                            <div>
-                                <input
-                                    className="code__submission"
-                                    id='mobile'
-                                    name="mobile"
-                                    placeholder={loggedUser.contactNo}
-                                    type="text"
-                                    value={contactNo}
-                                    onChange={(e) => setContactNo(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            <label htmlFor="email" className="label__style mb-0">Email</label>
-                            <div>
-                                <input
-                                    className="code__submission"
-                                    id='email'
-                                    name="email"
-                                    type="text"
-                                    placeholder={loggedUser.email}
-                                    disabled
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            <label htmlFor="batch" className="label__style mb-0">Batch</label>
-                            <div>
-                                <input
-                                    className="code__submission"
-                                    id='batch'
-                                    name="batch"
-                                    type='text'
-                                    disabled
-                                    placeholder={loggedUser.batch}
-                                    value={Batch}
-                                    onChange={(e) => setBatch(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            <label htmlFor="qualification" className="label__style mb-0">Qualification</label>
-                            <div>
-                                <input
-                                    className="code__submission"
-                                    id='qualification'
-                                    name="qualification"
-                                    placeholder={loggedUser.qualification}
-                                    type="text"
-                                    value={qualification}
-                                    onChange={(e) => setQualification(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            <label htmlFor="YearofExperience" className="label__style mb-0">Year of Experience</label>
-                            <div>
-                                <input
-                                    className="code__submission"
-                                    id='YearofExperience'
-                                    name="Year of Experience"
-                                    placeholder={loggedUser.experience}
-                                    type="text"
-                                    value={experience}
-                                    onChange={(e) => setExperience(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            <label htmlFor="password" className="label__style mb-0">Password</label>
-                            <div>
-                                <input
-                                    className="code__submission"
-                                    id='password'
-                                    name="Password"
-                                    type="password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            <label htmlFor="cpassword" className="label__style mb-0">Confirm Password</label>
-                            <div>
-                                <input
-                                    className="code__submission"
-                                    id='cpassword'
-                                    name="Confirm Password"
-                                    type="password"
-                                    value={cPassword}
-                                    onChange={(e) => setcPassword(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            <div className="text-center mt-3"><button className="submit__capstone" type="submit">Update</button></div>
-                        </div>
-                    </div>
-                </form> */}
             </div>
             <ToastContainer
                 position="top-right"

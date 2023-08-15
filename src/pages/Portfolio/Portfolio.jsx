@@ -55,16 +55,19 @@ const Portfolio = () => {
                                             label="Github URL"
                                             name="githubURL"
                                             id="githubURL"
+                                            placeholder="Enter Github URL"
                                             type="url" />
                                         <RequestField
                                             label="Portfolio URL"
                                             name="portfolioURL"
                                             id="portfolioURL"
+                                            placeholder="Enter Portfolio URL"
                                             type="url" />
                                         <RequestField
                                             label="Resume URL"
                                             name="resumeURL"
                                             id="resumeURL"
+                                            placeholder="Enter Resume URL"
                                             type="url" />
                                     </div>
                                     <div className="d-flex justify-content-center align-items-center">

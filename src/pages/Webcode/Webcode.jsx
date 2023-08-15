@@ -38,7 +38,7 @@ const Webcode = () => {
                 <div className="d-flex justify-content-between flexCont ">
                     <div className="flexCont__data">
                         <div className="title weight-500 pb-2">
-                            {loggedUser.name ? loggedUser.name : loggedUser.student.name}
+                            {loggedUser.name ? loggedUser.name : loggedUser.student.name} {" "}
                             {loggedUser.lName ? loggedUser.lName : loggedUser.student.lName}
                         </div>
                         <div
@@ -80,7 +80,7 @@ const Webcode = () => {
                         <div className="mt-2">
                             <div className="px-4 d-flex flex-column gap-1">
                                 <div className="title ">
-                                    {loggedUser.name ? loggedUser.name : loggedUser.student.name}
+                                    {loggedUser.name ? loggedUser.name : loggedUser.student.name} {" "}
                                     {loggedUser.lName ? loggedUser.lName : loggedUser.student.lName}
                                 </div>
                                 <div className="secondaryGreyTextColor">
@@ -210,14 +210,22 @@ const Webcode = () => {
                                                     <tbody>
                                                         <tr>
                                                             <td>
-                                                                <TextField label="Front End Source Code" placeholder="Enter Front-end Source Code URL" name="feCode" id="feCode" type="url" />
-
+                                                                <TextField
+                                                                    label="Front End Source Code"
+                                                                    placeholder="Enter Front-end Source Code URL"
+                                                                    name="feCode"
+                                                                    id="feCode"
+                                                                    type="url" />
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <TextField label="Front End Deployed URL" placeholder="Enter Front-end Deployed URL" name="feUrl" id="feUrl" type="url" />
-
+                                                                <TextField
+                                                                    label="Front End Deployed URL"
+                                                                    placeholder="Enter Front-end Deployed URL"
+                                                                    name="feUrl"
+                                                                    id="feUrl"
+                                                                    type="url" />
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -236,7 +244,6 @@ const Webcode = () => {
                                     }
                                 </Formik>
                             }
-
                             <div className="col-12 marksContainer">
                                 <div className="row d-flex align-itmes-center justify-content-between mx-1">
                                     <div className="col-12">

@@ -50,9 +50,6 @@ const Tasks = () => {
                                         className="marktag tasktag mx-1 px-3 rounded">
                                         Task score : - {item.score}
                                     </div>
-                                    {/* <div
-                                        className="tasktag px-2 rounded">
-                                        Task</div> */}
                                 </div>
                             </div>
                         </div>
@@ -93,7 +90,7 @@ const Tasks = () => {
             {
                 !DBTask.length
                 &&
-                <h3 className='text-center mt-3'>Task has not been Submitted</h3>
+                <h3 className='text-center mt-3 padding__left'>Task has not been Submitted</h3>
             }
         </section>
     )

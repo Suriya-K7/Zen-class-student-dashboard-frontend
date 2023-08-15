@@ -77,7 +77,7 @@ const Dashboard = () => {
                             {
                                 webCode ?
                                     webCode.score :
-                                    "Not assigned"
+                                    "Not Submitted"
                             }
                         </div>
                         <div className='text-center mb-2'>
@@ -92,7 +92,7 @@ const Dashboard = () => {
                             {
                                 capStone ?
                                     capStone.score :
-                                    "Not assigned"
+                                    "Not Submitted"
                             }
                         </div>
                         <div className='text-center mb-2'>

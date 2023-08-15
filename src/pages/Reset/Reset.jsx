@@ -57,8 +57,20 @@ const Reset = () => {
                                     {
                                         formik => (
                                             <Form>
-                                                <TextField label="New Password" name="password" id="password" type="password" />
-                                                <TextField label="Confirm Password" name="cPassword" id="cPassword" type="password" />
+                                                <TextField
+                                                    label="New Password"
+                                                    name="password"
+                                                    id="password"
+                                                    type="password"
+                                                    placeholder="Enter New Password"
+                                                />
+                                                <TextField
+                                                    label="Confirm Password"
+                                                    name="cPassword"
+                                                    id="cPassword"
+                                                    type="password"
+                                                    placeholder="Confirm New Password"
+                                                />
                                                 <button type="submit" className="col-12 btn btn-lg btn-block login__btn mt-4 mb-4 d-flex justify-content-center">
                                                     {
                                                         isLoading ? (<span className="spinner-border text-warning"></span>) : "Update Password"

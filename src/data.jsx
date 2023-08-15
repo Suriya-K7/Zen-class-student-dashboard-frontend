@@ -84,12 +84,6 @@ export const navBarLink = [
         link: '/certificate'
     },
     {
-        id: 14,
-        name: 'Testimonial',
-        icon: <FaListAlt />,
-        link: '/testimonial'
-    },
-    {
         id: 15,
         name: 'Leaderboard',
         icon: <GiRank3 />,

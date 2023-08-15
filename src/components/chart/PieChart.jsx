@@ -7,7 +7,6 @@ const PieChart = ({ chartData }) => {
         <Bar
             data={chartData}
             height={100}
-
         />
     )
 }

@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "./header.css";
-import Users from "../../assets/users.png";
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import DataContext from '../../context/DataContext';
 
 const Header = () => {
-    const { head, handleLogout, loggedUser } = useContext(DataContext);
+    const { head, setHead, handleLogout, loggedUser } = useContext(DataContext);
+    useEffect(() => {
+        const header = localStorage.getItem("head");
+        if (header) {
+            setHead(header);
+        } else {
+            setHead("Class");
+        }
+    }, [])
     return (
         <header className="top__header d-flex align-items-center justify-content-between">
             <h1 className="heading ">{head}</h1>

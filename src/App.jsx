@@ -15,7 +15,6 @@ import Queries from './pages/Queries/Queries';
 import Requirements from './pages/Requirements/Requirements';
 import Syllabus from './pages/Syllabus/Syllabus';
 import Tasks from './pages/Tasks/Tasks';
-import Testimonial from './pages/Testimonial/Testimonial';
 import Webcode from './pages/Webcode/Webcode';
 import Navbar from './components/navbar/Navbar';
 import Roadmap from './pages/Roadmap/Roadmap';
@@ -71,7 +70,6 @@ function App() {
             <Route path='/leave' element={<Leave />} />
             <Route path='/mock' element={<Mock />} />
             <Route path='/certificate' element={<Certificate />} />
-            <Route path='/testimonial' element={<Testimonial />} />
             <Route path='/learderboard' element={<Leaderboard />} />
             <Route path='/syllabus' element={<Syllabus />} />
             <Route path='/profile' element={<Profile />} />

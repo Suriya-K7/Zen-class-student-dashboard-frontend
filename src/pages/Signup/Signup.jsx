@@ -75,14 +75,62 @@ const Signup = () => {
                                     {
                                         formik => (
                                             <Form>
-                                                <TextField label="First Name" name="name" id="name" type="text" />
-                                                <TextField label="Last Name" name="lName" id="lName" type="text" />
-                                                <TextField label="Email" name="email" id="email" type="email" />
-                                                <TextField label="Contact No" name="contactNo" id="contactNo" type="text" />
-                                                <TextField label="Experience" name="experience" id="experience" type="text" />
-                                                <TextField label="Qualification" name="qualification" id="qualification" type="text" />
-                                                <TextField label="Password" name="password" id="password" type="password" />
-                                                <TextField label="Confirm Password" name="cPassword" id="cPassword" type="password" />
+                                                <TextField
+                                                    label="First Name"
+                                                    name="name"
+                                                    id="name"
+                                                    type="text"
+                                                    placeholder="Enter Your First Name"
+                                                />
+                                                <TextField
+                                                    label="Last Name"
+                                                    name="lName"
+                                                    id="lName"
+                                                    type="text"
+                                                    placeholder="Enter Your Last Name"
+                                                />
+                                                <TextField
+                                                    label="Email"
+                                                    name="email"
+                                                    id="email"
+                                                    type="email"
+                                                    placeholder="Enter Your Email"
+                                                />
+                                                <TextField
+                                                    label="Contact No"
+                                                    name="contactNo"
+                                                    id="contactNo"
+                                                    type="text"
+                                                    placeholder="Enter Your Contact"
+                                                />
+                                                <TextField
+                                                    label="Experience"
+                                                    name="experience"
+                                                    id="experience"
+                                                    type="text"
+                                                    placeholder="Enter Your Experience in Years"
+                                                />
+                                                <TextField
+                                                    label="Qualification"
+                                                    name="qualification"
+                                                    id="qualification"
+                                                    type="text"
+                                                    placeholder="Enter Your Qualification"
+                                                />
+                                                <TextField
+                                                    label="Password"
+                                                    name="password"
+                                                    id="password"
+                                                    type="password"
+                                                    placeholder="Enter Password"
+                                                />
+                                                <TextField
+                                                    label="Confirm Password"
+                                                    name="cPassword"
+                                                    id="cPassword"
+                                                    type="password"
+                                                    placeholder="Confirm Password"
+                                                />
                                                 <button type="submit" className="col-12 btn btn-lg btn-block login__btn mt-4 mb-4 d-flex justify-content-center">
                                                     {
                                                         isLoading ? (<span className="spinner-border text-warning"></span>) : "Register"

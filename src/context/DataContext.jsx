@@ -8,23 +8,12 @@ import { roadMapData } from "../data";
 const DataContext = createContext({});
 
 export const DataProvider = ({ children }) => {
-    // code and functions
+    // variables and functions
     const { width } = useWindowSize();
     const [head, setHead] = useState("Class");
     const [loggedUser, setLoggedUser] = useState("");
     const [token, setToken] = useState("");
     const [resetToken, setResetToken] = useState("");
-
-    //
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [cPassword, setcPassword] = useState("");
-    const [name, setName] = useState("");
-    const [lName, setlName] = useState("");
-    const [contactNo, setContactNo] = useState("");
-    const [qualification, setQualification] = useState("");
-    const [experience, setExperience] = useState("");
-
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const [config, setConfig] = useState({
@@ -47,13 +36,6 @@ export const DataProvider = ({ children }) => {
     const [capStone, setCapStone] = useState(null);
     const [query, setQuery] = useState([]);
     const [portfolio, setPortfolio] = useState(null);
-    // const [queryTitle, setQueryTitle] = useState("");
-    // const [queryDesc, setQueryDesc] = useState("");
-    // const [portfolioURL, setPortfolioURL] = useState("");
-    // const [githubURL, setGithubURL] = useState("");
-    // const [resumeURL, setResumeURL] = useState("");
-    // const [reason, setReason] = useState("");
-    // const [appliedOn, setAppliedOn] = useState("");
     const [leave, setLeave] = useState([]);
     const [mock, setMock] = useState([]);
 
@@ -144,8 +126,15 @@ export const DataProvider = ({ children }) => {
 
         try {
             const response = await api.put("/student/update", data);
+            const student = response.data.matchedStudent;
+            const updatedData = { token, student };
+            localStorage.setItem("loggedInUser", JSON.stringify(updatedData));
+            setLoggedUser(updatedData.student);
             toast.success(response.data.message);
             setIsLoading(false);
+            setTimeout(() => {
+                navigate("/class");
+            }, 2000);
         } catch (error) {
             if (error.response.data.message) {
                 toast.error(error.response.data.message)
@@ -483,7 +472,10 @@ export const DataProvider = ({ children }) => {
         }
     }
 
-
+    const handleHead = (data) => {
+        setHead(data);
+        localStorage.setItem("head", data);
+    }
     //
 
     return (
@@ -495,24 +487,8 @@ export const DataProvider = ({ children }) => {
                 setLoggedUser,
                 token,
                 setToken,
-                email,
-                setEmail,
-                password,
-                setPassword,
-                cPassword,
-                setcPassword,
                 resetToken,
                 setResetToken,
-                name,
-                setName,
-                lName,
-                setlName,
-                contactNo,
-                setContactNo,
-                qualification,
-                setQualification,
-                experience,
-                setExperience,
                 handleSignIn,
                 handleLogout,
                 handleSignUp,
@@ -562,7 +538,8 @@ export const DataProvider = ({ children }) => {
                 handleAddLeave,
                 handleLeaveCancel,
                 mock,
-                fetchMock
+                fetchMock,
+                handleHead
             }}
         >
             {children}

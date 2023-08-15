@@ -43,8 +43,20 @@ const Login = () => {
                                     {
                                         formik => (
                                             <Form>
-                                                <TextField label="Email" name="email" id="email" type="email" />
-                                                <TextField label="Password" name="password" id="password" type="password" />
+                                                <TextField
+                                                    label="Email"
+                                                    name="email"
+                                                    id="email"
+                                                    type="email"
+                                                    placeholder="Enter Register Email"
+                                                />
+                                                <TextField
+                                                    label="Password"
+                                                    name="password"
+                                                    id="password"
+                                                    type="password"
+                                                    placeholder="Enter Password"
+                                                />
                                                 <button type="submit" className="col-12 btn btn-lg btn-block login__btn mt-4 mb-4 d-flex justify-content-center">
                                                     {
                                                         isLoading ? (<span className="spinner-border text-warning"></span>) : "Login"
@@ -54,43 +66,13 @@ const Login = () => {
                                         )
                                     }
                                 </Formik>
-                                {/* <form onSubmit={handleSignIn}>
-                                    <div className="form-group mt-2">
-                                        <label htmlFor="email" className="label-style mb-0">Email</label>
-                                        <div>
-                                            <input
-                                                className="form-control"
-                                                id="email" name="email"
-                                                placeholder="Example : johndoe@mail.com"
-                                                type="email"
-                                                value={email}
-                                                onChange={(e) => setEmail(e.target.value)}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="form-group mt-1">
-                                        <label htmlFor="password" className="label-style mb-0">Password</label>
-                                        <div>
-                                            <input
-                                                className="form-control"
-                                                id="password"
-                                                name="password"
-                                                placeholder="Your password"
-                                                type="password"
-                                                value={password}
-                                                onChange={(e) => setPassword(e.target.value)}
-                                            />
-                                        </div>
-                                    </div>
-                                    <button type="submit" className="col-12 btn btn-lg btn-block login__btn mt-4 mb-4 d-flex justify-content-center">
-                                        {
-                                            isLoading ? (<span className="spinner-border text-warning"></span>) : "Login"
-                                        }
-                                    </button>
-                                </form> */}
                             </div>
-                            <Link to="/forgot" className="btn forgot btn-outline-danger mb-2">Forgot Password?</Link>
-                            <Link to="/signup" className="btn forgot btn-outline-success">Not Register? Sign up</Link>
+                            <Link to="/forgot" className="btn forgot btn-outline-danger mb-2">
+                                Forgot Password?
+                            </Link>
+                            <Link to="/signup" className="btn forgot btn-outline-success">
+                                Not Register? Sign up
+                            </Link>
                         </div>
                     </div>
                 </div>

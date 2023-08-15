@@ -40,7 +40,13 @@ const Forgot = () => {
                                     {
                                         formik => (
                                             <Form>
-                                                <TextField label="Registered Email" name="email" id="email" type="email" />
+                                                <TextField
+                                                    label="Registered Email"
+                                                    name="email"
+                                                    id="email"
+                                                    type="email"
+                                                    placeholder="Enter Register Email Id"
+                                                />
                                                 <button type="submit" className="col-12 btn btn-lg btn-block login__btn mt-4 mb-4 d-flex justify-content-center">
                                                     {
                                                         isLoading ? (<span className="spinner-border text-warning"></span>) : "Send Reset Link"
