@@ -3,13 +3,12 @@ import "./leave.css";
 import { BiPlus } from "react-icons/bi";
 import DataContext from '../../context/DataContext';
 import { ToastContainer, Zoom } from "react-toastify";
+import { Formik, Form } from 'formik';
+import RequestField from '../../components/textField/RequestField';
+import * as Yup from "yup";
 
 const Leave = () => {
     const { leave,
-        reason,
-        setReason,
-        appliedOn,
-        setAppliedOn,
         trigger,
         setTrigger,
         fetchLeave,
@@ -21,6 +20,14 @@ const Leave = () => {
     useEffect(() => {
         fetchLeave();
     }, [trigger, setTrigger]);
+
+    const validate = Yup.object({
+        reason: Yup.string()
+            .min(6, "Must be at least 6 Characters")
+            .required("Required"),
+        appliedOn: Yup.date()
+            .required("Required"),
+    })
 
     return (
         <section className='leave'>
@@ -65,52 +72,48 @@ const Leave = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div className="modal-body  d-flex flex-column gap-1">
-                            <form
-                                onSubmit={(e) => e.preventDefault()}
-                                className="d-flex justify-content-center flex-column mt-2">
-                                <div className="form-group mt-1">
-                                    <label htmlFor="date" className="label__style mb-0">On</label>
-                                    <div>
-                                        <input
-                                            className="formInputs"
-                                            id="date"
-                                            name="date"
-                                            type="date"
-                                            value={appliedOn}
-                                            onChange={(e) => setAppliedOn(e.target.value)}
-                                            required
-                                        />
-                                    </div>
-                                </div>
-                                <div className="form-group mt-1">
-                                    <label htmlFor="reason" className='label__style'>Reason</label>
-                                    <textarea
-                                        id='reason'
-                                        className="formInputs"
-                                        rows="5"
-                                        name="reason"
-                                        type="text"
-                                        placeholder="Enter Reason"
-                                        value={reason}
-                                        onChange={(e) => setReason(e.target.value)}
-                                        required
-                                    ></textarea>
-                                </div>
-                                <div className="modal-footer">
-                                    <div className='text-center w-100'>
-                                        <button
-                                            type="submit" onClick={handleAddLeave}
-                                            className="btn submit__btn w-100" >
-                                            {
-                                                isLoading ?
-                                                    (<span className="spinner-border spinner-border-sm text-warning">
-                                                    </span>)
-                                                    : "Create"
-                                            }
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                            <Formik
+                                initialValues={{
+                                    reason: "",
+                                    appliedOn: "",
+                                }}
+                                validationSchema={validate}
+                                onSubmit={(values, { resetForm }) => {
+                                    handleAddLeave(values);
+                                    resetForm({ values: "" });
+                                }}
+                            >
+                                {
+                                    formik => (
+                                        <Form className='className="d-flex justify-content-center w-75 flex-column mt-2'>
+                                            <RequestField
+                                                label="Date"
+                                                placeholder="Enter Date"
+                                                name="appliedOn"
+                                                id="appliedOn"
+                                                type="date" />
+                                            <RequestField
+                                                label="Reason"
+                                                placeholder="Enter Reason"
+                                                name="reason"
+                                                id="reason"
+                                                type="textarea" />
+                                            <div className="modal-footer text-center">
+                                                <div className='text-center w-100'>
+                                                    <button type="submit" className="btn submit__btn w-100">
+                                                        {
+                                                            isLoading ?
+                                                                (<span className="spinner-border spinner-border-sm text-warning">
+                                                                </span>)
+                                                                : "Create"
+                                                        }
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </Form>
+                                    )
+                                }
+                            </Formik>
                             <button className="btn btn-danger w-25" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>

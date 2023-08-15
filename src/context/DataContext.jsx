@@ -13,18 +13,18 @@ export const DataProvider = ({ children }) => {
     const [head, setHead] = useState("Class");
     const [loggedUser, setLoggedUser] = useState("");
     const [token, setToken] = useState("");
+    const [resetToken, setResetToken] = useState("");
 
     //
     const [email, setEmail] = useState("");
-    const [Batch, setBatch] = useState("");
     const [password, setPassword] = useState("");
     const [cPassword, setcPassword] = useState("");
-    const [resetToken, setResetToken] = useState("");
     const [name, setName] = useState("");
     const [lName, setlName] = useState("");
     const [contactNo, setContactNo] = useState("");
     const [qualification, setQualification] = useState("");
     const [experience, setExperience] = useState("");
+
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const [config, setConfig] = useState({
@@ -45,15 +45,15 @@ export const DataProvider = ({ children }) => {
     const [trigger, setTrigger] = useState(0);
     const [webCode, setWebcode] = useState(null);
     const [capStone, setCapStone] = useState(null);
-    const [queryTitle, setQueryTitle] = useState("");
-    const [queryDesc, setQueryDesc] = useState("");
     const [query, setQuery] = useState([]);
     const [portfolio, setPortfolio] = useState(null);
-    const [portfolioURL, setPortfolioURL] = useState("");
-    const [githubURL, setGithubURL] = useState("");
-    const [resumeURL, setResumeURL] = useState("");
-    const [reason, setReason] = useState("");
-    const [appliedOn, setAppliedOn] = useState("");
+    // const [queryTitle, setQueryTitle] = useState("");
+    // const [queryDesc, setQueryDesc] = useState("");
+    // const [portfolioURL, setPortfolioURL] = useState("");
+    // const [githubURL, setGithubURL] = useState("");
+    // const [resumeURL, setResumeURL] = useState("");
+    // const [reason, setReason] = useState("");
+    // const [appliedOn, setAppliedOn] = useState("");
     const [leave, setLeave] = useState([]);
     const [mock, setMock] = useState([]);
 
@@ -120,8 +120,9 @@ export const DataProvider = ({ children }) => {
         setIsLoading(true);
 
         try {
-            await api.post("/student/signup", data);
-            toast.success("Register successfully, Kindly check Your Email");
+            const response = await api.post("/student/signup", data);
+            toast.success(response.data.message);
+            toast.success("Check your Mail & Activate");
             setIsLoading(false);
             setTimeout(() => {
                 navigate("/");
@@ -137,42 +138,23 @@ export const DataProvider = ({ children }) => {
     };
 
     // handle profile update
-    const handleProfileUpdate = async (e) => {
+    const handleProfileUpdate = async (data) => {
 
         setIsLoading(true);
 
-        e.preventDefault();
-        const userData = {
-            email,
-            name,
-            lName,
-            contactNo,
-            qualification,
-            experience,
-            password
-        };
-        if (password === cPassword) {
-            try {
-                await api.put("/student/update", userData);
-                setEmail("");
-                setName("");
-                setlName("");
-                setContactNo("");
-                setQualification("");
-                setExperience("");
-                setPassword("");
-                setcPassword("");
-                setIsLoading(false);
-            } catch (error) {
-                toast.error(error.response.data.message);
-                setIsLoading(false);
-                // console.log(error.response.data.message);
-            }
-        } else {
-            toast.error("password mismatch");
+        try {
+            const response = await api.put("/student/update", data);
+            toast.success(response.data.message);
             setIsLoading(false);
-            // alert("password mismatch")
+        } catch (error) {
+            if (error.response.data.message) {
+                toast.error(error.response.data.message)
+            } else {
+                console.log(error);
+            }
+            setIsLoading(false);
         }
+
     };
 
     // handle account confirming
@@ -411,24 +393,13 @@ export const DataProvider = ({ children }) => {
     }
 
     // handling portfolio submission
-    const handlePortfolio = async (e) => {
-
-        e.preventDefault();
+    const handlePortfolio = async (data) => {
 
         setIsLoading(true);
 
-        const newPortfolio = {
-            portfolioURL,
-            githubURL,
-            resumeURL
-        }
-
         try {
-            const response = await api.post("student/portfolio", newPortfolio, config);
+            const response = await api.post("student/portfolio", data, config);
             toast.success(response.data.message);
-            setGithubURL("");
-            setPortfolioURL("");
-            setResumeURL("");
             setTrigger((prev) => prev + 1);
             setIsLoading(false);
         } catch (error) {
@@ -454,18 +425,12 @@ export const DataProvider = ({ children }) => {
     }
 
     // handling leave submission
-    const handleAddLeave = async () => {
+    const handleAddLeave = async (data) => {
 
         setIsLoading(true);
 
-        const data = {
-            reason, appliedOn
-        }
-
         try {
             const response = await api.post("student/leave", data, config);
-            setReason("");
-            setAppliedOn("");
             setIsLoading(false);
             toast.success(response.data.message);
             setTrigger((prev) => prev + 1);
@@ -585,28 +550,14 @@ export const DataProvider = ({ children }) => {
                 capStone,
                 handleCapStone,
                 fetchCapStone,
-                queryTitle,
-                setQueryTitle,
-                queryDesc,
-                setQueryDesc,
                 query,
                 fetchQuery,
                 handleAddQuery,
                 handleQueryCancel,
                 portfolio,
-                portfolioURL,
-                setPortfolioURL,
-                githubURL,
-                setGithubURL,
-                resumeURL,
-                setResumeURL,
                 fetchPortfolio,
                 handlePortfolio,
                 leave,
-                reason,
-                setReason,
-                appliedOn,
-                setAppliedOn,
                 fetchLeave,
                 handleAddLeave,
                 handleLeaveCancel,

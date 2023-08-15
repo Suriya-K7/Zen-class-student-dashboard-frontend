@@ -26,7 +26,6 @@ const Dashboard = () => {
             }]
         }
     )
-    console.log(chartData);
 
     useEffect(() => {
         fetchTask();
