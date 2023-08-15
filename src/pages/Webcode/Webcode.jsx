@@ -3,31 +3,33 @@ import "./webcode.css";
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import DataContext from '../../context/DataContext';
 import { ToastContainer, Zoom } from "react-toastify";
+import { Formik, Form } from 'formik';
+import TextField from '../../components/textField/TextField';
+import * as Yup from "yup";
 
 
 const Webcode = () => {
 
     const { loggedUser,
-        head,
-        frontEndCode,
-        frontEndURL,
         webCode,
         fetchWebcode,
         handleWebcode,
         trigger,
         setTrigger,
-        setFrontEndCode,
-        setFrontEndURL,
         isLoading } = useContext(DataContext);
 
     useEffect(() => {
         fetchWebcode();
     }, [trigger, setTrigger])
 
-    useEffect(() => {
-        setFrontEndCode("");
-        setFrontEndURL("");
-    }, [head])
+    const validate = Yup.object({
+        feCode: Yup.string()
+            .url("Enter Valid URL")
+            .required("Required"),
+        feUrl: Yup.string()
+            .url("Enter Valid URL")
+            .required("Required"),
+    })
 
     return (
         <section className='task__submission'>
@@ -184,51 +186,55 @@ const Webcode = () => {
                             }
                             {
                                 !webCode &&
-                                <form onSubmit={handleWebcode}>
-                                    <table className="table">
-                                        <thead>
-                                            <tr >
-                                                <th scope="col">Code Submission</th>
+                                <Formik
+                                    initialValues={{
+                                        feCode: "",
+                                        feUrl: "",
+                                    }}
+                                    validationSchema={validate}
+                                    onSubmit={(values, { resetForm }) => {
+                                        handleWebcode(values);
+                                        resetForm({ values: "" });
+                                    }}
+                                >
+                                    {
+                                        formik => (
+                                            <Form>
+                                                <table className="table">
+                                                    <thead>
+                                                        <tr >
+                                                            <th scope="col">Code Submission</th>
 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <input
-                                                        type="url"
-                                                        className="code__submission"
-                                                        placeholder='Enter Front-end Source code'
-                                                        required
-                                                        value={frontEndCode}
-                                                        onChange={(e) => setFrontEndCode(e.target.value)}
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <input
-                                                        type="url"
-                                                        className="code__submission"
-                                                        placeholder='Enter Front-end Deployed URL'
-                                                        required
-                                                        value={frontEndURL}
-                                                        onChange={(e) => setFrontEndURL(e.target.value)}
-                                                    />
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <div className="text-center">
-                                        <button className="submit__capstone" type="submit">
-                                            {
-                                                isLoading ?
-                                                    (<span className="spinner-border spinner-border-sm text-warning"></span>)
-                                                    : "Submit"
-                                            }
-                                        </button>
-                                    </div>
-                                </form>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <TextField label="Front End Source Code" placeholder="Enter Front-end Source Code URL" name="feCode" id="feCode" type="url" />
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <TextField label="Front End Deployed URL" placeholder="Enter Front-end Deployed URL" name="feUrl" id="feUrl" type="url" />
+
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div className="text-center">
+                                                    <button className="submit__capstone" type="submit">
+                                                        {
+                                                            isLoading ?
+                                                                (<span className="spinner-border spinner-border-sm text-warning"></span>)
+                                                                : "Submit"
+                                                        }
+                                                    </button>
+                                                </div>
+                                            </Form>
+                                        )
+                                    }
+                                </Formik>
                             }
 
                             <div className="col-12 marksContainer">

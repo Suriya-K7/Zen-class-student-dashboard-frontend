@@ -300,21 +300,13 @@ export const DataProvider = ({ children }) => {
     }
 
     // handling webcode submission
-    const handleWebcode = async (e) => {
-
-        e.preventDefault();
+    const handleWebcode = async (data) => {
 
         setIsLoading(true);
 
-        const newWebCode = {
-            feUrl: frontEndURL,
-            feCode: frontEndCode
-        }
         try {
-            const response = await api.post("student/webcode", newWebCode, config);
+            const response = await api.post("student/webcode", data, config);
             toast.success(response.data.message);
-            setFrontEndCode("");
-            setFrontEndURL("")
             setTrigger((prev) => prev + 1);
             setIsLoading(false);
         } catch (error) {
@@ -340,26 +332,13 @@ export const DataProvider = ({ children }) => {
     }
 
     // handling capstone submission
-    const handleCapStone = async (e) => {
-
-        e.preventDefault();
+    const handleCapStone = async (data) => {
 
         setIsLoading(true);
 
-        const newCapStone = {
-            feUrl: frontEndURL,
-            feCode: frontEndCode,
-            beUrl: backEndURL,
-            beCode: backEndCode,
-        }
-
         try {
-            const response = await api.post("student/capstone", newCapStone, config);
+            const response = await api.post("student/capstone", data, config);
             toast.success(response.data.message);
-            setFrontEndCode("");
-            setFrontEndURL("");
-            setBackEndCode("");
-            setBackEndURL("");
             setTrigger((prev) => prev + 1);
             setIsLoading(false);
         } catch (error) {
@@ -385,18 +364,12 @@ export const DataProvider = ({ children }) => {
     }
 
     // handling query request
-    const handleAddQuery = async () => {
-
-        const data = {
-            queryTitle, queryDesc
-        }
+    const handleAddQuery = async (data) => {
 
         setIsLoading(true);
 
         try {
             const response = await api.post("student/query", data, config);
-            setQueryTitle("");
-            setQueryDesc("");
             setTrigger((prev) => prev + 1);
             setIsLoading(false);
             toast.success(response.data.message);

@@ -70,3 +70,11 @@ a {
   font-weight: 500;
   color: rgb(145, 3, 3);
 }
+.errorMessage-request {
+  bottom: -35px;
+  left: 10px;
+  position: absolute;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgb(145, 3, 3);
+}

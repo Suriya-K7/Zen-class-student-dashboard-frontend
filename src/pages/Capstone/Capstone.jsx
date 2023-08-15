@@ -4,19 +4,12 @@ import { FaExternalLinkAlt } from 'react-icons/fa';
 import { useContext } from 'react';
 import DataContext from '../../context/DataContext';
 import { ToastContainer, Zoom } from "react-toastify";
+import { Formik, Form } from 'formik';
+import TextField from '../../components/textField/TextField';
+import * as Yup from "yup";
 
 const Capstone = () => {
     const { loggedUser,
-        head,
-        config,
-        frontEndCode,
-        setFrontEndCode,
-        frontEndURL,
-        setFrontEndURL,
-        backEndCode,
-        setBackEndCode,
-        backEndURL,
-        setBackEndURL,
         trigger,
         setTrigger,
         capStone,
@@ -29,13 +22,20 @@ const Capstone = () => {
         fetchCapStone();
     }, [trigger, setTrigger])
 
-    useEffect(() => {
-        setFrontEndCode("");
-        setFrontEndURL("");
-        setBackEndCode("");
-        setBackEndURL("");
-    }, [head])
-
+    const validate = Yup.object({
+        feCode: Yup.string()
+            .url("Enter Valid URL")
+            .required("Required"),
+        feUrl: Yup.string()
+            .url("Enter Valid URL")
+            .required("Required"),
+        beCode: Yup.string()
+            .url("Enter Valid URL")
+            .required("Required"),
+        beUrl: Yup.string()
+            .url("Enter Valid URL")
+            .required("Required"),
+    })
 
     return (
         <section className='task__submission'>
@@ -213,75 +213,85 @@ const Capstone = () => {
                             }
                             {
                                 !capStone &&
-                                <form onSubmit={handleCapStone}>
-                                    <table className="table">
-                                        <thead>
-                                            <tr >
-                                                <th scope="col">Code Submission</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <input
-                                                        type="url"
-                                                        className="code__submission"
-                                                        placeholder='Enter Front-end Source code'
-                                                        required
-                                                        value={frontEndCode}
-                                                        onChange={(e) => setFrontEndCode(e.target.value)}
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <input
-                                                        type="url"
-                                                        className="code__submission"
-                                                        placeholder='Enter Front-end Deployed URL'
-                                                        required
-                                                        value={frontEndURL}
-                                                        onChange={(e) => setFrontEndURL(e.target.value)}
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <input
-                                                        type="url"
-                                                        className="code__submission"
-                                                        placeholder='Enter Back-end Source code'
-                                                        required
-                                                        value={backEndCode}
-                                                        onChange={(e) => setBackEndCode(e.target.value)}
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <input
-                                                        type="url"
-                                                        className="code__submission"
-                                                        placeholder='Enter Back-end Deployed URL'
-                                                        required
-                                                        value={backEndURL}
-                                                        onChange={(e) => setBackEndURL(e.target.value)}
-                                                    />
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <div className="text-center">
-                                        <button className="submit__capstone" type="submit">
-                                            {
-                                                isLoading ?
-                                                    (<span className="spinner-border spinner-border-sm text-warning">
-                                                    </span>)
-                                                    : "Submit"
-                                            }
-                                        </button>
-                                    </div>
-                                </form>
+                                <Formik
+                                    initialValues={{
+                                        feCode: "",
+                                        feUrl: "",
+                                        beCode: "",
+                                        beUrl: "",
+                                    }}
+                                    validationSchema={validate}
+                                    onSubmit={(values, { resetForm }) => {
+                                        handleCapStone(values);
+                                        resetForm({ values: "" });
+                                    }}
+                                >
+                                    {
+                                        formik => (
+                                            <Form>
+                                                <table className="table">
+                                                    <thead>
+                                                        <tr >
+                                                            <th scope="col">Code Submission</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <TextField
+                                                                    label="Front End Source Code"
+                                                                    placeholder="Enter Front-end Source Code URL"
+                                                                    name="feCode" id="feCode"
+                                                                    type="url" />
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <TextField
+                                                                    label="Front End Deployed URL"
+                                                                    placeholder="Enter Front-end Deployed URL"
+                                                                    name="feUrl"
+                                                                    id="feUrl"
+                                                                    type="url" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <TextField
+                                                                    label="Back End Source Code"
+                                                                    placeholder="Enter Back-end Source Code URL"
+                                                                    name="beCode" id="beCode"
+                                                                    type="url" />
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <TextField
+                                                                    label="Back End Deployed URL"
+                                                                    placeholder="Enter Back-end Deployed URL"
+                                                                    name="beUrl"
+                                                                    id="beUrl"
+                                                                    type="url" />
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div className="text-center">
+                                                    <button className="submit__capstone" type="submit">
+                                                        {
+                                                            isLoading ?
+                                                                (<span className="spinner-border spinner-border-sm text-warning"></span>)
+                                                                : "Submit"
+                                                        }
+                                                    </button>
+                                                </div>
+                                            </Form>
+                                        )
+                                    }
+                                </Formik>
                             }
                             <div className="col-12 marksContainer">
                                 <div className="row d-flex align-itmes-center justify-content-between mx-1">

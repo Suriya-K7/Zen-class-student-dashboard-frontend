@@ -3,13 +3,12 @@ import "./queries.css";
 import { BiPlus } from "react-icons/bi";
 import DataContext from '../../context/DataContext';
 import { ToastContainer, Zoom } from "react-toastify";
+import { Formik, Form } from 'formik';
+import RequestField from '../../components/textField/RequestField';
+import * as Yup from "yup";
 
 const Queries = () => {
-    const { queryTitle,
-        setQueryTitle,
-        queryDesc,
-        setQueryDesc,
-        query,
+    const { query,
         trigger,
         setTrigger,
         fetchQuery,
@@ -19,9 +18,19 @@ const Queries = () => {
     } = useContext(DataContext);
 
 
+
     useEffect(() => {
         fetchQuery();
     }, [trigger, setTrigger]);
+
+    const validate = Yup.object({
+        queryTitle: Yup.string()
+            .min(6, "Must be at least 6 Characters")
+            .required("Required"),
+        queryDesc: Yup.string()
+            .min(6, "Must be at least 6 Characters")
+            .required("Required"),
+    })
 
     return (
         <section className='leave'>
@@ -74,48 +83,48 @@ const Queries = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div className="modal-body d-flex flex-column gap-1">
-                            <form onSubmit={(e) => e.preventDefault()} className="d-flex justify-content-center flex-column mt-2">
-                                <div className="form-group mt-1">
-                                    <label htmlFor="title" className="label__style mb-0">Query Title</label>
-                                    <div>
-                                        <input
-                                            className="formInputs"
-                                            id="title"
-                                            name="title"
-                                            type="text"
-                                            value={queryTitle}
-                                            placeholder="Enter Query Title"
-                                            onChange={(e) => setQueryTitle(e.target.value)}
-                                            required
-                                        />
-                                    </div>
-                                </div>
-                                <div className="form-group mt-1">
-                                    <label htmlFor="Description" className='label__style'>Query Description</label>
-                                    <textarea
-                                        id='Description'
-                                        className="formInputs"
-                                        rows="5"
-                                        name="Description"
-                                        placeholder="Enter Description"
-                                        value={queryDesc}
-                                        onChange={(e) => setQueryDesc(e.target.value)}
-
-                                    ></textarea>
-                                </div>
-                                <div className="modal-footer text-center">
-                                    <div className='text-center w-100'>
-                                        <button type="submit" onClick={handleAddQuery} className="btn submit__btn w-100">
-                                            {
-                                                isLoading ?
-                                                    (<span className="spinner-border spinner-border-sm text-warning">
-                                                    </span>)
-                                                    : "Create"
-                                            }
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                            <Formik
+                                initialValues={{
+                                    queryTitle: "",
+                                    queryDesc: "",
+                                }}
+                                validationSchema={validate}
+                                onSubmit={(values, { resetForm }) => {
+                                    handleAddQuery(values);
+                                    resetForm({ values: "" });
+                                }}
+                            >
+                                {
+                                    formik => (
+                                        <Form className='className="d-flex justify-content-center w-75 flex-column mt-2'>
+                                            <RequestField
+                                                label="Query Title"
+                                                placeholder="Enter Title/Topic"
+                                                name="queryTitle"
+                                                id="queryTitle"
+                                                type="text" />
+                                            <RequestField
+                                                label="Query Description"
+                                                placeholder="Enter Description"
+                                                name="queryDesc"
+                                                id="queryDesc"
+                                                type="textarea" />
+                                            <div className="modal-footer text-center">
+                                                <div className='text-center w-100'>
+                                                    <button type="submit" className="btn submit__btn w-100">
+                                                        {
+                                                            isLoading ?
+                                                                (<span className="spinner-border spinner-border-sm text-warning">
+                                                                </span>)
+                                                                : "Create"
+                                                        }
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </Form>
+                                    )
+                                }
+                            </Formik>
                             <button className="btn btn-danger w-25" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -133,7 +142,12 @@ const Queries = () => {
                                     </div>
                                     <div className="modal-body  d-flex flex-column gap-1">
                                         <div className="d-flex gap-3">
-                                            <button className="btn btn-danger" onClick={() => handleQueryCancel(data._id)} data-bs-dismiss="modal">Confirm Delete</button>
+                                            <button
+                                                className="btn btn-danger"
+                                                onClick={() => handleQueryCancel(data._id)}
+                                                data-bs-dismiss="modal">
+                                                Confirm Delete
+                                            </button>
                                             <button className="btn btn-info" data-bs-dismiss="modal">Cancel</button>
                                         </div>
                                     </div>

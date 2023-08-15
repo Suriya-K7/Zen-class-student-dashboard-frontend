@@ -26,7 +26,6 @@ const Roadmap = () => {
         backEndURL,
         setBackEndURL,
         handleTask
-
     } = useContext(DataContext);
 
     //
@@ -135,11 +134,11 @@ const Roadmap = () => {
                                                         <div className="submission">
                                                             <div className="form-group mt-2">
                                                                 {
-                                                                    data.task === "fs"
+                                                                    (data.task === "fs"
                                                                         ||
                                                                         data.task === "fe"
                                                                         ||
-                                                                        data.task === "fb" ? (
+                                                                        data.task === "fb") && (
                                                                         <>
                                                                             <label htmlFor="FrontEndSourceCode"
                                                                                 className="label__style mb-0">
@@ -158,14 +157,14 @@ const Roadmap = () => {
                                                                                 />
                                                                             </div>
                                                                         </>
-                                                                    ) : ""
+                                                                    )
                                                                 }
 
                                                             </div>
                                                             {
-                                                                data.task === "fe"
+                                                                (data.task === "fe"
                                                                     ||
-                                                                    data.task === "fb" ? (
+                                                                    data.task === "fb") && (
                                                                     <>
                                                                         <label
                                                                             htmlFor="FrontEndDeployedURL"
@@ -185,14 +184,14 @@ const Roadmap = () => {
                                                                             />
                                                                         </div>
                                                                     </>
-                                                                ) : ""
+                                                                )
                                                             }
                                                             {
-                                                                data.task === "bs"
+                                                                (data.task === "bs"
                                                                     ||
                                                                     data.task === "be"
                                                                     ||
-                                                                    data.task === "fb" ? (
+                                                                    data.task === "fb") && (
                                                                     <>
                                                                         <label
                                                                             htmlFor="BackEndSourceCode"
@@ -212,12 +211,12 @@ const Roadmap = () => {
                                                                             />
                                                                         </div>
                                                                     </>
-                                                                ) : ""
+                                                                )
                                                             }
                                                             {
-                                                                data.task === "be"
+                                                                (data.task === "be"
                                                                     ||
-                                                                    data.task === "fb" ? (
+                                                                    data.task === "fb") && (
                                                                     <>
                                                                         <label
                                                                             htmlFor="BackEndDeployedURL"
@@ -237,7 +236,7 @@ const Roadmap = () => {
                                                                             />
                                                                         </div>
                                                                     </>
-                                                                ) : ""
+                                                                )
                                                             }
                                                         </div>
                                                         <div className=' task__submitBtn'>
