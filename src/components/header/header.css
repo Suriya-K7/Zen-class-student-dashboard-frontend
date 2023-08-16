@@ -36,4 +36,12 @@
   border-radius: 50%;
   color: #fff;
   font-size: 28px;
+  transition: 0.3s;
+}
+.user__logo:hover {
+  scale: 1.1;
+  box-shadow: 0 0 10px var(--theme);
+}
+.dropdown-menu {
+  transition: 0.3s;
 }

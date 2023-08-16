@@ -618,7 +618,7 @@ export const roadMapData = [
         time: "23/05/2023 - Tuesday - 6:30 PM : 9:30 PM",
         content: "recap of DOM topics, Mandatory session practice task, https://github.com/rvsp/HTML-CSS/blob/master/Mini-tasks/003-JS-DOM.md",
         preread: "No preread available",
-        activity: "Pagination: https://docs.google.com/document/d/1O8yVCwB_GaY5rZK1_mNkZ9GeYJLeom_dYmcVN3Mb2ws/edit HTML-Forms: https://docs.google.com/document/d/1I8qIE7_ri5Q_1QqkxJ7rdlRmGnWWW7zCa7BXrwAi8hI/edit Calculator: https://docs.google.com/document/d/1VyZJG0KZAoZEs3h_lpP65XPekNqsbFp8bouOZSWsOTc/edit"
+        activity: "Pagination: https://docs.google.com/document/d/1O8yVCwB_GaY5rZK1_mNkZ9GeYJLeom_dYmcVN3Mb2ws/edit , HTML-Forms: https://docs.google.com/document/d/1I8qIE7_ri5Q_1QqkxJ7rdlRmGnWWW7zCa7BXrwAi8hI/edit , Calculator: https://docs.google.com/document/d/1VyZJG0KZAoZEs3h_lpP65XPekNqsbFp8bouOZSWsOTc/edit"
         , tags: ["DOM", "html", "css"], task: "fe", link: "https://us06web.zoom.us/rec/share/S1z40fmV0LzBJThoYYhzvo4g6h-6gCYQGxb9x9NgmIxwYTImbZzhrkWo9qloTxVC._rrabP2Efu-3GiHY"
     },
     {

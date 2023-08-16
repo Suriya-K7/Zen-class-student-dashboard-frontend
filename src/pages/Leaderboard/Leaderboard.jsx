@@ -9,7 +9,7 @@ const Leaderboard = () => {
             <div className="leader__leaderboard__table">
                 <table >
                     <thead>
-                        <tr className='p-2'>
+                        <tr className='p-2 text-center text-md-start'>
                             <th>Rank</th>
                             <th>Name</th>
                             <th>Batch</th>
@@ -22,7 +22,7 @@ const Leaderboard = () => {
 
                                 return data.rank === 1 ?
                                     (
-                                        <tr key={data.rank} className="topper p-2">
+                                        <tr key={data.rank} className="topper p-2 text-center text-md-start">
                                             <td className='px-3'>{data.rank}</td>
                                             <td>{data.name}</td>
                                             <td>{data.batch}</td>
@@ -30,7 +30,7 @@ const Leaderboard = () => {
                                         </tr>
                                     ) :
                                     (
-                                        <tr key={data.rank} className="p-2">
+                                        <tr key={data.rank} className="p-2 text-center text-md-start">
                                             <td className='px-3'>{data.rank}</td>
                                             <td>{data.name}</td>
                                             <td>{data.batch}</td>

@@ -9,30 +9,13 @@
   --body-font: "Comfortaa", cursive;
   /* --secont-font: "Comfortaa", cursive; */
   --secont-font: "Poppins", sans-serif;
-  /* fonts size */
-  --big-font-size: 56px;
-  --h1-font-size: 50px;
-  --h2-font-size: 32px;
-  --h3-font-size: 24px;
-  --large-font-size: 18px;
-  --normal-font-size: 16px;
-  --small-font-size: 15px;
-  --smaller-font-size: 14px;
-  --tiny-font-size: 12px;
 }
-.dark-theme {
-  --title-color: hsl(0, 0%, 100%);
-  --text-color: hsl(0, 0%, 80%);
-  --body-color: hsl(0, 0%, 7%);
-  --container-color: hsl(0, 1%, 17%);
-  --border-color: hsl(0, 0%, 15%);
-}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: var(--secont-font);
-  transition: 0.3s;
 }
 ::-webkit-scrollbar {
   width: 10px;

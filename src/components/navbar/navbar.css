@@ -60,10 +60,12 @@
   padding-left: 4px;
   font-size: 24px;
 }
-.nav-active,
-.nav__item:hover {
+.nav-active {
   color: var(--theme) !important;
   filter: drop-shadow(0 0 5px var(--theme));
+}
+.nav__item:hover {
+  color: var(--green) !important;
 }
 .nav__title {
   font-size: 14px;
