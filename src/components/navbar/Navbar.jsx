@@ -6,10 +6,11 @@ import { NavLink } from 'react-router-dom';
 import DataContext from '../../context/DataContext';
 
 
+
 const Navbar = () => {
-    const { setHead, handleHead } = useContext(DataContext);
+    const { handleHead, toggle, setToggle } = useContext(DataContext);
     return (
-        <nav className='navbar__side'>
+        <nav className={`navbar__side ${toggle ? "active" : ""}`}>
             <div className='nav__header d-flex align-items-center gap-2'>
                 <img src={Logo} alt=".." className='img' />
                 <h2 className='user'>Student</h2>
@@ -31,6 +32,9 @@ const Navbar = () => {
                         )
                     })
                 }
+            </div>
+            <div className={`nav__toggle d-flex align-items-center justify-content-center ${toggle ? "active" : ""}`} onClick={() => setToggle(!toggle)}>
+                <div className={`toggle__menu ${toggle ? "active" : ""}`}></div>
             </div>
         </nav>
     )

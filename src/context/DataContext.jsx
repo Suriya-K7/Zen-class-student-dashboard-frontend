@@ -26,6 +26,7 @@ export const DataProvider = ({ children }) => {
     const [day, setDay] = useState(0);
     const [data, setData] = useState(roadMapData[0]);
     const [flag, setFlag] = useState(true);
+    const [toggle, setToggle] = useState(false);
     const [frontEndCode, setFrontEndCode] = useState("");
     const [frontEndURL, setFrontEndURL] = useState("");
     const [backEndCode, setBackEndCode] = useState("");
@@ -474,6 +475,7 @@ export const DataProvider = ({ children }) => {
 
     const handleHead = (data) => {
         setHead(data);
+        setToggle(false);
         localStorage.setItem("head", data);
     }
     //
@@ -539,7 +541,9 @@ export const DataProvider = ({ children }) => {
                 handleLeaveCancel,
                 mock,
                 fetchMock,
-                handleHead
+                handleHead,
+                toggle,
+                setToggle
             }}
         >
             {children}
