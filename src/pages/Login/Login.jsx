@@ -57,7 +57,9 @@ const Login = () => {
                                                     type="password"
                                                     placeholder="Enter Password"
                                                 />
-                                                <button type="submit" className="col-12 btn btn-lg btn-block login__btn mt-4 mb-4 d-flex justify-content-center">
+                                                <button
+                                                    type="submit"
+                                                    className="col-12 btn btn-lg btn-block login__btn mt-4 mb-4 d-flex justify-content-center">
                                                     {
                                                         isLoading ? (<span className="spinner-border text-warning"></span>) : "Login"
                                                     }
@@ -73,11 +75,52 @@ const Login = () => {
                             <Link to="/signup" className="btn forgot btn-outline-success">
                                 Not Register? Sign up
                             </Link>
+                            <button
+                                className="btn mt-2 instruction forgot"
+                                data-bs-toggle="modal"
+                                data-bs-target="#myModal"
+                            >
+                                Mandatory Instruction
+                            </button>
                         </div>
                     </div>
                 </div>
                 <div className="col-md-4 text-right banner__right pr-0">
                     <img src={BANNER} className="banner" alt=".." />
+                </div>
+            </div>
+            <div
+                className="modal"
+                id="myModal">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h4 className="modal-title">
+                                Welcome to Zen Student Dashboard
+                            </h4>
+                        </div>
+                        <div className="modal-body">
+                            for Student Login use below ID or create new one: <br />
+                            <span className="mx-5"> Email : usraising@gmail.com</span> <br />
+                            <span className="mx-5"> password : suriya@123</span> <br />
+                            <span className="mx-5"> Email : usraise@live.com</span> <br />
+                            <span className="mx-5"> password : suriya@123</span> <br />
+                            <hr />
+                            for Mentor Login use below ID<br />
+                            <span className="mx-5"> Email : mentor@gmail.com</span> <br />
+                            <span className="mx-5"> password : mentor@123</span> <br />
+                            <hr />
+                            <span className='text-warning'>Note : As this project was Student Dashboard, Mentor login have only access to evaluate task.</span>
+                        </div>
+                        <div className="modal-footer">
+                            <button
+                                type="button"
+                                className="btn btn-danger"
+                                data-bs-dismiss="modal">
+                                Close
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <ToastContainer

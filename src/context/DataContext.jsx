@@ -10,7 +10,7 @@ const DataContext = createContext({});
 export const DataProvider = ({ children }) => {
     // variables and functions
     const { width } = useWindowSize();
-    const [head, setHead] = useState("Class");
+    const [head, setHead] = useState("");
     const [loggedUser, setLoggedUser] = useState("");
     const [token, setToken] = useState("");
     const [resetToken, setResetToken] = useState("");
@@ -77,7 +77,11 @@ export const DataProvider = ({ children }) => {
                 },
             })
             setIsLoading(false);
-            navigate("/class");
+            if (response.data.student.isMentor) {
+                navigate("/mentor")
+            } else {
+                navigate("/class");
+            }
         } catch (error) {
             if (error.response.data.message) {
                 toast.error(error.response.data.message)
@@ -268,6 +272,37 @@ export const DataProvider = ({ children }) => {
             }
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    // fetching all task
+    const fetchAllTask = async () => {
+        try {
+            const fetchedTask = await api.get("student/alltask");
+            if (fetchedTask) {
+                setDBTask(fetchedTask.data.filter((item) => item.score === "Yet to be graded"));
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    // update task Score
+    const handleTaskScore = async (data) => {
+
+        setIsLoading(true);
+
+        try {
+            const response = await api.patch("/student/task/evaluation", data);
+            toast.success(response.data.message);
+            setIsLoading(false);
+        } catch (error) {
+            if (error.response.data.message) {
+                toast.error(error.response.data.message)
+            } else {
+                console.log(error);
+            }
+            setIsLoading(false);
         }
     }
 
@@ -543,7 +578,9 @@ export const DataProvider = ({ children }) => {
                 fetchMock,
                 handleHead,
                 toggle,
-                setToggle
+                setToggle,
+                fetchAllTask,
+                handleTaskScore
             }}
         >
             {children}

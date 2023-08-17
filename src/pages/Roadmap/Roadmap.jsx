@@ -25,7 +25,8 @@ const Roadmap = () => {
         setBackEndCode,
         backEndURL,
         setBackEndURL,
-        handleTask
+        handleTask,
+        setHead
     } = useContext(DataContext);
 
     //
@@ -36,6 +37,10 @@ const Roadmap = () => {
         setBackEndCode("");
         setBackEndURL("");
     }, [day, head]);
+
+    useEffect(() => {
+        setHead("Class");
+    }, [])
 
     return (
         <section className='roadmap'>

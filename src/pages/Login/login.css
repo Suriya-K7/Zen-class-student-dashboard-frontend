@@ -1,5 +1,3 @@
-.loginPage {
-}
 .loginPage .logo {
   width: 120px;
   padding: 0;
@@ -22,6 +20,16 @@
   background-color: var(--theme);
   color: #fff;
   letter-spacing: 2px;
+}
+.loginPage .instruction {
+  background-color: var(--theme);
+  color: #fff;
+  transition: 0.3s;
+}
+.loginPage .instruction:hover {
+  background-color: var(--theme);
+  color: #fff;
+  scale: 1.1;
 }
 @media (max-width: 768px) {
   .banner__right {

@@ -26,6 +26,7 @@ import Signup from './pages/Signup/Signup';
 import Forgot from './pages/Forgot/Forgot';
 import Reset from './pages/Reset/Reset';
 import ConfirmUser from './pages/confirmUser/ConfirmUser';
+import Mentor from './pages/Mentor/Mentor';
 
 
 
@@ -36,7 +37,7 @@ function App() {
   return (
     <>
       {
-        loggedUser &&
+        loggedUser && !loggedUser.isMentor &&
         <>
           <Header />
           <Navbar />
@@ -55,8 +56,9 @@ function App() {
           </>
         }
         {
-          loggedUser &&
+          loggedUser && !loggedUser.isMentor &&
           <>
+            <Route path='/' element={<Roadmap />} />
             <Route path='/class' element={<Roadmap />} />
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/task' element={<Tasks />} />
@@ -73,6 +75,12 @@ function App() {
             <Route path='/learderboard' element={<Leaderboard />} />
             <Route path='/syllabus' element={<Syllabus />} />
             <Route path='/profile' element={<Profile />} />
+          </>
+        }
+        {
+          loggedUser && loggedUser.isMentor &&
+          <>
+            <Route path='/mentor' element={<Mentor />} />
           </>
         }
 

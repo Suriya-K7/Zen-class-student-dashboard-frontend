@@ -1,9 +1,12 @@
 import React from 'react';
 import "./loggedout.css";
 import { Link } from 'react-router-dom';
-import LOGO from "../../assets/logo.png"
+import LOGO from "../../assets/logo.png";
+import { useContext } from 'react';
+import DataContext from '../../context/DataContext';
 
 const LoggedOut = () => {
+    const { handleLogout } = useContext(DataContext);
     return (
         <div className='loggedOut'>
             <div className="row img__container">
@@ -14,7 +17,9 @@ const LoggedOut = () => {
                     User has beed logged out. Kindly go to Login page
                 </h3>
                 <div className='text-center'>
-                    <Link to='/' className='btn btn-success'>
+                    <Link to='/'
+                        onClick={handleLogout}
+                        className='btn btn-success'>
                         Go To Login
                     </Link>
                 </div>
