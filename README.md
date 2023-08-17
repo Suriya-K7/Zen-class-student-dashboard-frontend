@@ -1,6 +1,6 @@
 # Zen Class Student Dashboard
 
-I designed a student dashboard for ZEN class, enabling students to attend classes, submit assignments, raise queries, and request leaves. Mentors can also assess tasks through their login.
+I developed an exceptional student dashboard for ZEN class, empowering students to attend classes, submit assignments, raise queries, and request leaves. Mentors can effortlessly assess tasks for evalutation using their login credentials.
 
 Steps to register :
 --
