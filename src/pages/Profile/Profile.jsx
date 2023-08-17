@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import "./profile.css"
 import DataContext from '../../context/DataContext';
 import { ToastContainer, Zoom } from "react-toastify";
@@ -12,6 +12,7 @@ const Profile = () => {
         handleProfileUpdate,
         loggedUser,
         isLoading,
+        handleHead
     } = useContext(DataContext);
 
     const validate = Yup.object({
@@ -49,6 +50,10 @@ const Profile = () => {
             .required("Required"),
 
     })
+
+    useEffect(() => {
+        handleHead("Update Profile")
+    }, [])
     return (
         <section className='profile'>
             <div className='container mt-5'>

@@ -27,7 +27,14 @@ const Header = () => {
                             </div>
                         </span>
                         <ul className="dropdown-menu">
-                            <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
+                            <li>
+                                <Link
+                                    className="dropdown-item"
+                                    onClick={() => setHead("Update Profile")}
+                                    to="/profile">
+                                    Profile
+                                </Link>
+                            </li>
                             <li><a className="dropdown-item" onClick={handleLogout}>Logout</a></li>
                         </ul>
                     </div>
