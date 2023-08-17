@@ -5,7 +5,9 @@ import { leaderBoardData } from '../../data';
 const Leaderboard = () => {
     return (
         <section className='leaderboard'>
-            <div className="leader__leaderboard p-3  text-center"><h2>Competition is a good thing; it forces us to do our best.</h2></div>
+            <div className="leader__leaderboard p-3  text-center">
+                <h2>Competition is a good thing; it forces us to do our best.</h2>
+            </div>
             <div className="leader__leaderboard__table">
                 <table >
                     <thead>
@@ -19,7 +21,6 @@ const Leaderboard = () => {
                     <tbody>
                         {
                             leaderBoardData.map((data) => {
-
                                 return data.rank === 1 ?
                                     (
                                         <tr key={data.rank} className="topper p-2 text-center text-md-start">

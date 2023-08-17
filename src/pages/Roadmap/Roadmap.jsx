@@ -55,7 +55,7 @@ const Roadmap = () => {
                             :
                             <>
                                 <h3 className="classhead m-0 text-white">
-                                    Please watch the recordings
+                                    Join the Class
                                 </h3>
                                 <button
                                     className="play__btn"
@@ -298,7 +298,7 @@ const Roadmap = () => {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h4 className="modal-title">Recording Link</h4>
+                            <h4 className="modal-title">Session Link</h4>
                             <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div className="modal-body">

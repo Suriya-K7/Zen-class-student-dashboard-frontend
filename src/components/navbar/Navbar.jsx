@@ -33,7 +33,9 @@ const Navbar = () => {
                     })
                 }
             </div>
-            <div className={`nav__toggle d-flex align-items-center justify-content-center ${toggle ? "active" : ""}`} onClick={() => setToggle(!toggle)}>
+            <div
+                className={`nav__toggle d-flex align-items-center justify-content-center ${toggle ? "active" : ""}`}
+                onClick={() => setToggle(!toggle)}>
                 <div className={`toggle__menu ${toggle ? "active" : ""}`}></div>
             </div>
         </nav>

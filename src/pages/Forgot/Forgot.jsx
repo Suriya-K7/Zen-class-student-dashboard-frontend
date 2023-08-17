@@ -56,25 +56,6 @@ const Forgot = () => {
                                         )
                                     }
                                 </Formik>
-
-                                {/* <form onSubmit={handleForgot}>
-                                    <div className="form-group mt-5">
-                                        <label htmlFor="email" className="label-style mb-0">Enter Resigtered Email</label>
-                                        <div>
-                                            <input
-                                                className="form-control"
-                                                id="email"
-                                                name="email"
-                                                placeholder="Example : johndoe@mail.com" type="email"
-                                                value={email}
-                                                onChange={(e) => setEmail(e.target.value)}
-                                            />
-                                        </div>
-                                    </div>
-                                    <button type="submit" className="col-12 btn btn-lg btn-block login__btn mt-4 mb-4">
-                                        Send Reset Link
-                                    </button>
-                                </form> */}
                             </div>
                             <Link to="/" className="btn forgot btn-outline-success ">Go to Login</Link>
                         </div>
