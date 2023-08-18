@@ -110,7 +110,7 @@ const Login = () => {
                             <span className="mx-5"> Email : mentor@gmail.com</span> <br />
                             <span className="mx-5"> password : mentor@123</span> <br />
                             <hr />
-                            <span className='text-warning'>Note : As this project was Student Dashboard, Mentor login have only access to evaluate task.</span>
+                            <span className='text-secondary text-justify'>Note: This Student Dashboard project includes features tailored for students, such as attending classes, submitting tasks, checking the dashboard, submitting webcode and capstone projects, raising queries, submitting porfolio,  and requesting leave. Mentor login provides exclusive access for task evaluation only.</span>
                         </div>
                         <div className="modal-footer">
                             <button
